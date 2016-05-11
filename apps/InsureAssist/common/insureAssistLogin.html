@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+		<!-- Licensed Materials - Property of IBM
+			 5725-G92 (C) Copyright IBM Corp. 2006, 2013. All Rights Reserved.
+			 US Government Users Restricted Rights - Use, duplication or
+             disclosure restricted by GSA ADP Schedule Contract with IBM Corp. -->	
+<html>
+	<head>
+		<meta charset="UTF-8" >
+		<meta name="viewport" content="width=device-width, initial-scale=1" >
+		<title>Login</title>
+		<link rel="stylesheet" href="css/InsureAssist.css"/>
+		
+	</head>
+	<script>
+
+	
+	function onLogin(){
+	
+	 document.getElementById("loginForm").submit();
+	  window.location.href="InsureAssistQuoteResult.html";
+	
+	}
+	
+	</script>
+	<body onload="isPopup(); setFocus();">
+		<div id="authenticatorLoginFormWrapper">
+		<br />
+			<img alt="InsureAssist" src="images/logo.png">
+			<h1>Welcome. Please log in</h1>
+			<form method="post" id="loginForm">
+				
+				<input type="text" id="username" name="username" placeholder="LoginId" />
+				<br />
+				<input type="password" id="password" name="password" placeholder="Password" />
+				<br />
+				<input type="button" id="login" name="login" value="Log In" onclick="onLogin()"/>
+			</form>
+			<br />
+			<input type="submit" class="insureAssistButton" name="getQuote" value="Get Quote" />
+			<input type="submit" class="insureAssistButton" name="claimCenter" value="Claim Center" />
+			<br />
+			<br />
+			<a href="" class="insureAssistLoginLabel">Forgot ID/Password?</a>
+			<a href="" class="insureAssistLoginLabel">Create Account</a>
+		<br/>
+		<br />
+		<footer class="footer">
+			<img alt="branchLocator" src="images/branch_locator.png">
+			<img alt="contactAgent" src="images/find_agent.png">
+			<img alt="callUs" src="images/call_me.png">
+			<img alt="LiveChat" src="images/live_chat.png">
+			<br />
+			<label>Locator</label>
+			<label>Agent</label>
+			<label>callMe</label>
+			<label>liveChat</label>
+	</footer>
+			
+		
+		</div>
+		
+		
+</body>
+		</html>

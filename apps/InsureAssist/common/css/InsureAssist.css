@@ -1,0 +1,136 @@
+#authenticatorLoginFormWrapper {
+				
+				
+				display: inline-block;
+				
+				text-align: center;
+				width: 100%;
+				height: 100%;
+			}
+			
+			
+			#authenticatorLoginFormWrapper h1 {
+				color: #303030;
+				font-family: arial,helvetica,sans-serif;
+				font-size: 14px;
+				font-weight: normal;
+				margin: 10px;
+				padding: 60px 0 0;
+			}
+			.insureAssistLoginLabel
+			{
+				color: #303030;
+				font-family: arial,helvetica,sans-serif;
+				font-size: 14px;
+				font-weight: normal;
+				margin: 10px;
+				padding: 60px 0 0;
+			}
+			
+			#authenticatorLoginFormWrapper form label {
+				display: none;
+			}
+			
+			#authenticatorLoginFormWrapper form input {
+				border: 1px solid #ccc;
+				color: #707070;
+				font-family: arial, helvetica, sans-serif;
+				font-size: 12px;
+				font-weight: normal;
+				margin: 8px 0;
+				padding: 5px;
+				
+			}
+			
+			#authenticatorLoginFormWrapper form input#login {
+				background: -moz-linear-gradient(center top, #0088b8 5%, #005880 100%);
+				background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #0088b8), color-stop(1, #005880));
+				filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0088b8', endColorstr='#005880');
+				background-color: #0088b8;
+				border: 1px solid #084870;
+				-moz-border-radius: 6px;
+				-webkit-border-radius: 6px;
+				border-radius: 4px;
+				color: #fff;
+				display: inline-block;
+				font-family: arial, helvetica, sans-serif;
+				font-size: 12px;
+				font-weight: bold;
+				
+				padding: 4px 12px;
+				text-shadow: 1px 1px 0px #528ecc;
+				
+			}
+			
+			.insureAssistButton {
+				background: -moz-linear-gradient(center top, #0088b8 5%, #005880 100%);
+				background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #0088b8), color-stop(1, #005880));
+				filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0088b8', endColorstr='#005880');
+				background-color: #0088b8;
+				border: 1px solid #084870;
+				-moz-border-radius: 6px;
+				-webkit-border-radius: 6px;
+				border-radius: 4px;
+				color: #fff;
+				display: inline-block;
+				font-family: arial, helvetica, sans-serif;
+				font-size: 12px;
+				font-weight: bold;
+				
+				padding: 4px 12px;
+				text-shadow: 1px 1px 0px #528ecc;
+				width: 120px;
+			}
+			
+			
+			#authenticatorLoginFormWrapper form input#login:active {
+				position: relative;
+				top: 1px;
+			}
+			
+			#authenticatorLoginFormWrapper form input#login:active {
+				position: relative;
+				top: 1px;
+			}
+			
+			
+		/* InsureAssistQuoteResult.html page details */
+		
+		#quoteResultWrapper
+		{
+				background-color: #0088b8;
+				color: #fff;
+				display: inline-block;
+				font-family: arial, helvetica, sans-serif;
+				font-size: 22px;
+				text-align: center;
+				font-weight: bold;
+				text-shadow: 1px 1px 0px #528ecc;
+				width: 100%;
+				height: 30px;
+		}
+		
+		#quoteResultButtonWrapper
+		{
+			margin: 20px;
+			text-align: center;
+		}
+		
+		#getYearlyPremiumWrapper
+		{
+				background-color: #F19027;
+				color: #fff;
+				display: inline-block;
+				font-family: arial, helvetica, sans-serif;
+				font-size: 22px;
+				text-align: center;
+				font-weight: bold;
+				text-shadow: 1px 1px 0px #528ecc;
+				width: 100%;
+				height: 60px;
+		}
+		
+		#quoteResult
+		{
+		text-align: center;
+		}

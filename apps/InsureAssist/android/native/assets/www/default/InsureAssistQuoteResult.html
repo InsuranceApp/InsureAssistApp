@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+		<!-- Licensed Materials - Property of IBM
+			 5725-G92 (C) Copyright IBM Corp. 2006, 2013. All Rights Reserved.
+			 US Government Users Restricted Rights - Use, duplication or
+             disclosure restricted by GSA ADP Schedule Contract with IBM Corp. -->	
+<html>
+	<head>
+		<meta charset="UTF-8" >
+		<meta name="viewport" content="width=device-width" >
+		<title>Login</title>
+		<link rel="stylesheet" href="css/InsureAssist.css"/>
+		
+	</head>
+	<script type="text/javascript">
+	function onClick(){
+	
+	  window.location.href="insureAssistLogin.html";
+	
+	}</script>
+	
+	<body onload="isPopup(); setFocus();">
+	<header>
+		<img id="quoteResultImage" alt="InsureAssist" src="images/logo.png">
+	</header>
+	<div id="quoteResult">
+	<div id="quoteResultWrapper">
+			<label>Quick Quote</label>
+	</div>
+	<br />
+	<br />
+	<div id="QuoteResultButtonWrapper">
+		<input type="submit" class="insureAssistButton" name="keyFeatures" value="Key Features" />
+		<input type="submit" class="insureAssistButton" name="premiumCalculator" value="Premium Calculator" />
+	<br />
+	<br />
+	
+	</div>
+	<div id="getYearlyPremiumWrapper">
+		<label id="yearlyPremium">Yearly Premium</label>
+		<br />
+		<label id="yearlyPremiumAmount">Rs. 14,000</label>
+	</div>
+	<div id="quoteResultImageWrapper">
+		<img id="quickQuoteCar" alt="InsureAssist" src="images/car_small.png">	
+	</div>
+	<div id="quoteResultLabelWrapper">
+		<label id="rtoLocation">RTO Location:</label>
+		<label id="rtoLocationCity"> Hyderabad</label>
+		<br />
+		<label id="regDate">Registration Date:</label>
+		<label id="regDateValue">24/07/2014</label>
+		<br />
+		<label id="manufacturer">Manufacturer:</label>
+		<label id="manufacturerValue">Honda</label>
+		<hr />
+	</div>
+	<div>
+		<input type="submit" class="insureAssistButton" name="recalculate" value="Recalculate" onclick="onClick()"/>
+		<input type="submit" class="insureAssistButton" name="buyOnline" value="Buy Online" />
+	</div>
+	<br />
+	<div>
+		<img id="save" src="images/save.png">
+		<label id="saveQuote">Save</label>
+		<img id="email" src="images/email.png">
+		<label id="saveQuote">Email</label>
+		<img id="save" src="images/share.png">
+		<label id="saveQuote">Share</label>
+		<br />
+	</div>
+	<br />
+	<footer>
+			<img alt="branchLocator" src="images/branch_locator.png">
+			<img alt="contactAgent" src="images/find_agent.png">
+			<img alt="callUs" src="images/call_me.png">
+			<img alt="LiveChat" src="images/live_chat.png">
+			<br />
+			<label>Locator</label>
+			<label>Agent</label>
+			<label>callMe</label>
+			<label>liveChat</label>
+	</footer>
+</div>
+</body>
+		</html>

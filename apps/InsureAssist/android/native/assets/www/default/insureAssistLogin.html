@@ -1,0 +1,75 @@
+<!DOCTYPE HTML><!-- Licensed Materials - Property of IBM
+			 5725-G92 (C) Copyright IBM Corp. 2006, 2013. All Rights Reserved.
+			 US Government Users Restricted Rights - Use, duplication or
+             disclosure restricted by GSA ADP Schedule Contract with IBM Corp. --><html>
+    <head>
+        <meta charset="UTF-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <title>Login</title>
+        <link href="worklight/worklight.css" rel="stylesheet">
+        <link href="css/InsureAssist.css" rel="stylesheet">
+        <script>
+		// Define WL namespace.
+		var WL = WL ? WL : {};
+		/**
+		 * WLClient configuration variables.
+		 * Values are injected by the deployer that packs the gadget.
+		 */
+		 WL.StaticAppProps = {
+   "APP_DISPLAY_NAME": "InsureAssist",
+   "APP_ID": "InsureAssist",
+   "APP_SERVICES_URL": "\/apps\/services\/",
+   "APP_VERSION": "1.0",
+   "ENVIRONMENT": "android",
+   "LOGIN_DISPLAY_TYPE": "embedded",
+   "WORKLIGHT_NATIVE_VERSION": "2674313786",
+   "WORKLIGHT_PLATFORM_VERSION": "7.1.0.0",
+   "WORKLIGHT_ROOT_URL": "\/apps\/services\/api\/InsureAssist\/android\/"
+};
+</script>
+		<script src="worklight/cordova.js"></script>
+		<script src="worklight/wljq.js"></script>
+		<script src="worklight/worklight.js"></script>
+		<script src="worklight/checksum.js"></script>
+		<script>
+	function onLogin(){
+	 document.getElementById("loginForm").submit();
+	  window.location.href="InsureAssistQuoteResult.html";
+	}
+	</script>
+    </head>
+    <body onload="isPopup(); setFocus();">
+        <div id="authenticatorLoginFormWrapper">
+            <br>
+            <img alt="InsureAssist" src="images/logo.png">
+			<h1>Welcome. Please log in</h1>
+            <form id="loginForm" method="post">
+                <input id="username" name="username" placeholder="LoginId" type="text">
+                <br>
+                <input id="password" name="password" placeholder="Password" type="password">
+                <br>
+                <input id="login" name="login" onclick="onLogin()" type="button" value="Log In">
+            </form>
+            <br>
+            <input class="insureAssistButton" name="getQuote" type="submit" value="Get Quote">
+			<input class="insureAssistButton" name="claimCenter" type="submit" value="Claim Center">
+            <br>
+            <br>
+            <a class="insureAssistLoginLabel" href="">Forgot ID/Password?</a>
+			<a class="insureAssistLoginLabel" href="">Create Account</a>
+            <br>
+            <br>
+            <footer class="footer">
+                <img alt="branchLocator" src="images/branch_locator.png">
+			<img alt="contactAgent" src="images/find_agent.png">
+			<img alt="callUs" src="images/call_me.png">
+			<img alt="LiveChat" src="images/live_chat.png">
+			<br>
+                <label>Locator</label>
+			<label>Agent</label>
+			<label>callMe</label>
+			<label>liveChat</label>
+            </footer>
+        </div>
+    </body>
+</html>
