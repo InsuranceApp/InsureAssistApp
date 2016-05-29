@@ -5,81 +5,77 @@
              disclosure restricted by GSA ADP Schedule Contract with IBM Corp. -->	
 <html>
 	<head>
-		<meta charset="UTF-8" >
-		<meta name="viewport" content="width=device-width" >
-		<title>Login</title>
-		<link rel="stylesheet" href="css/InsureAssist.css"/>
+	    		<meta charset="UTF-8">
+    		<title>InsureAssist</title>
+    		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+    		<!--
+    			<link rel="shortcut icon" href="images/favicon.png">
+    			<link rel="apple-touch-icon" href="images/apple-touch-icon.png"> 
+    		-->
+    		<link href="jqueryMobile/jquery.mobile-1.4.5.min.css" rel="stylesheet">
+    		<!-- <link href="jqueryMobile/demos/theme-classic.css" rel="stylesheet"> -->
+    		<link rel="stylesheet" href="css/InsureAssist.csss">
+    		<script>window.$ = window.jQuery = WLJQ;</script>
+			<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+        	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>    	
+    	
+		 
+		 <script type="text/javascript">
+		 $(window).load(function() {
+			    $('.insureAssistButton').css('background-color','#0088b8'); 
+			    $('#logIn').css('background-color','#0088b8'); 
+			});
+			$(document).ready(function() {
+    $("#footer").load("pages/Footer.html"); 
+    
+});
+		</script>
 		
 	</head>
-	<script type="text/javascript">
-	function onClick(){
 	
-	  window.location.href="insureAssistLogin.html";
-	
-	}</script>
 	
 	<body onload="isPopup(); setFocus();">
+	
+	<div id="quoteResult" align="center">
 	<header>
-		<img id="quoteResultImage" alt="InsureAssist" src="images/logo.png">
+		<img class="quoteResultImage" alt="InsureAssist" src="images/logo.png">
 	</header>
-	<div id="quoteResult">
-	<div id="quoteResultWrapper">
+	<div class="quoteResultWrapper">
 			<label>Quick Quote</label>
 	</div>
-	<br />
-	<br />
-	<div id="QuoteResultButtonWrapper">
-		<input type="submit" class="insureAssistButton" name="keyFeatures" value="Key Features" />
-		<input type="submit" class="insureAssistButton" name="premiumCalculator" value="Premium Calculator" />
-	<br />
-	<br />
-	
+	<div id="QuoteResultButtonWrapper" style="display: inline;">
+	<form>
+	<a href="InsureAssistQuoteResult.html" style="background-color: #0088b8 " class="insureAssistButton" data-role="button">Key Features</a>
+	<a href="InsureAssistQuoteResult.html" style="background-color: #0088b8 " class="insureAssistButton" data-role="button">Premium Calculator</a>
+	</form>
 	</div>
-	<div id="getYearlyPremiumWrapper">
-		<label id="yearlyPremium">Yearly Premium</label>
-		<br />
-		<label id="yearlyPremiumAmount">Rs. 14,000</label>
+	<div id="getYearlyPremiumWrapper" style="background-color: orange;">
+		<label id="yearlyPremium" >Yearly Premium : Rs. 14,000</label>
 	</div>
 	<div id="quoteResultImageWrapper">
 		<img id="quickQuoteCar" alt="InsureAssist" src="images/car_small.png">	
 	</div>
 	<div id="quoteResultLabelWrapper">
-		<label id="rtoLocation">RTO Location:</label>
-		<label id="rtoLocationCity"> Hyderabad</label>
-		<br />
-		<label id="regDate">Registration Date:</label>
-		<label id="regDateValue">24/07/2014</label>
-		<br />
-		<label id="manufacturer">Manufacturer:</label>
-		<label id="manufacturerValue">Honda</label>
-		<hr />
+		<label id="rtoLocation">RTO Location: Hyderabad</label>
+		<label id="regDate">Registration Date: 24/07/2014</label>
+		<label id="manufacturer">Manufacturer: Honda</label>
 	</div>
 	<div>
-		<input type="submit" class="insureAssistButton" name="recalculate" value="Recalculate" onclick="onClick()"/>
-		<input type="submit" class="insureAssistButton" name="buyOnline" value="Buy Online" />
+	<a href="InsureAssistQuoteResult.html" style="background-color: #0088b8 " class="insureAssistButton" data-role="button">Recalculate</a>
+	<a href="InsureAssistInsuranceDetails.html" style="background-color: #0088b8 " class="insureAssistButton" data-role="button">Buy Online</a>
 	</div>
-	<br />
-	<div>
-		<img id="save" src="images/save.png">
-		<label id="saveQuote">Save</label>
-		<img id="email" src="images/email.png">
-		<label id="saveQuote">Email</label>
-		<img id="save" src="images/share.png">
-		<label id="saveQuote">Share</label>
-		<br />
+	<div class="save" id="quote">
+		<img id="save" src="images/save.png" hspace="30">
+		<img id="email" src="images/email.png" hspace="30">
+		<img id="save" src="images/share.png" hspace="30">
 	</div>
-	<br />
-	<footer>
-			<img alt="branchLocator" src="images/branch_locator.png">
-			<img alt="contactAgent" src="images/find_agent.png">
-			<img alt="callUs" src="images/call_me.png">
-			<img alt="LiveChat" src="images/live_chat.png">
-			<br />
-			<label>Locator</label>
-			<label>Agent</label>
-			<label>callMe</label>
-			<label>liveChat</label>
-	</footer>
 </div>
+<div data-role="footer" data-position="fixed" data-theme="b">
+		<img class="footerAttributes" alt="branchLocator" src="images/branch_locator.png">
+		<img class="footerAttributes" alt="contactAgent" src="images/find_agent.png">
+		<img class="footerAttributes" alt="callUs" src="images/call_me.png">
+		<img class="footerAttributes" alt="LiveChat" src="images/live_chat.png">
+	</div>
+
 </body>
 		</html>

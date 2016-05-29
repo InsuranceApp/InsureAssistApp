@@ -1,3 +1,55 @@
+@CHARSET "ISO-8859-1";
+
+#loginForm {
+	margin-left: 30px;
+	margin-right: 30px;
+}
+h1 {
+	font-size: 20px;
+	font-family: "Times New Roman", Times, serif;
+}
+.insureAssistButton {
+ 	background-color: rgb(255,0,255);
+ 	font-size:15px;
+ 	font-family: Times New Roman;
+ 	margin-left: 30px;
+	margin-right: 30px;
+}
+.acct-lgn-text-pos {
+    color: #ffffff !important;
+    font-size: 0.6em !important;
+    text-align: center !important;
+    border: none !important;
+    background-color: #00B2EF !important;
+}
+.header{
+    background-color: #00B2EF !important;
+}
+.logo-img{
+	height:32dp;
+	width:10dp !important;
+}
+.footer-img{
+	width:30dp;
+	height:30dp;
+	margin-left: 20px;
+	
+}
+#logIn
+{
+	font-size:15px;
+ 	font-family: Times New Roman;
+}
+
+.insureAssistLoginLabel
+{
+	font-size:15px;
+ 	font-family: Times New Roman;
+ 	
+}			
+
+
+
 #authenticatorLoginFormWrapper {
 				
 				
@@ -56,31 +108,11 @@
 				font-family: arial, helvetica, sans-serif;
 				font-size: 12px;
 				font-weight: bold;
-				
 				padding: 4px 12px;
 				text-shadow: 1px 1px 0px #528ecc;
-				
 			}
 			
-			.insureAssistButton {
-				background: -moz-linear-gradient(center top, #0088b8 5%, #005880 100%);
-				background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #0088b8), color-stop(1, #005880));
-				filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0088b8', endColorstr='#005880');
-				background-color: #0088b8;
-				border: 1px solid #084870;
-				-moz-border-radius: 6px;
-				-webkit-border-radius: 6px;
-				border-radius: 4px;
-				color: #fff;
-				display: inline-block;
-				font-family: arial, helvetica, sans-serif;
-				font-size: 12px;
-				font-weight: bold;
-				
-				padding: 4px 12px;
-				text-shadow: 1px 1px 0px #528ecc;
-				width: 120px;
-			}
+			
 			
 			
 			#authenticatorLoginFormWrapper form input#login:active {
@@ -96,7 +128,7 @@
 			
 		/* InsureAssistQuoteResult.html page details */
 		
-		#quoteResultWrapper
+		.quoteResultWrapper
 		{
 				background-color: #0088b8;
 				color: #fff;
@@ -127,10 +159,65 @@
 				font-weight: bold;
 				text-shadow: 1px 1px 0px #528ecc;
 				width: 100%;
-				height: 60px;
+				height: 30px;
 		}
 		
 		#quoteResult
 		{
 		text-align: center;
 		}
+		
+		
+		#authenticatorQuoteFormWrapper form input#quickQuote {
+				background: -moz-linear-gradient(center top, #0088b8 5%, #005880 100%);
+				background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #0088b8), color-stop(1, #005880));
+				filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0088b8', endColorstr='#005880');
+				background-color: #0088b8;
+				border: 1px solid #084870;
+				-moz-border-radius: 6px;
+				-webkit-border-radius: 6px;
+				border-radius: 4px;
+				color: #fff;
+				display: inline-block;
+				font-family: arial, helvetica, sans-serif;
+				font-size: 12px;
+				font-weight: bold;
+				
+				padding: 4px 12px;
+				text-shadow: 1px 1px 0px #528ecc;
+				
+			}
+			
+			.loginFooter{
+			 padding-bottom: 0px;
+			 position: fixed;
+			 margin-bottom: 0px;
+			 bottom: 0px;
+			 left: 20px;
+			 right: 0px;
+			 width: 100%;
+			}
+			
+			.footerAttributes{
+			margin-left: 10px;
+			} 
+			
+			.premiumValue {
+				background: -moz-linear-gradient(center top, #0088b8 5%, #005880 100%);
+				background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #0088b8), color-stop(1, #005880));
+				filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0088b8', endColorstr='#005880');
+				background-color: #ffa500;
+				border: 1px solid #084870;
+				-moz-border-radius: 6px;
+				-webkit-border-radius: 6px;
+				border-radius: 4px;
+				color: #fff;
+				display: inline-block;
+				font-family: arial, helvetica, sans-serif;
+				font-size: 12px;
+				font-weight: bold;
+				padding: 4px 12px;
+				text-shadow: 1px 1px 0px #528ecc;
+				width: 120px;
+			}
+			

@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html>
+    	
+<head>
+  		<meta charset="UTF-8">
+  		<title>InsureAssist</title>
+  		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+  		<!--
+  			<link rel="shortcut icon" href="images/favicon.png">
+  			<link rel="apple-touch-icon" href="images/apple-touch-icon.png"> 
+  		-->
+  		<link href="jqueryMobile/jquery.mobile-1.4.5.min.css" rel="stylesheet">
+  		
+  		<script>window.$ = window.jQuery = WLJQ;</script>
+  		
+		<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+		<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+		<link rel="stylesheet" href="css/InsureAssist.css"/>
+		 <script>
+		 
+		 </script>
+		 
+		 <script type="text/javascript">
+		 $(window).load(function() {
+			    $('.insureAssistButton').css('background-color','#0088b8'); 
+			});
+		</script>
+	
+		
+		
+		
+	</head>
+    	
+    	<body onload="isPopup(); setFocus();">
+    	 <div data-role="header" id="header" align="center">
+
+		<img src="images/logo.png" class="quoteResultImage" alt="InsureAssist">
+	</div>
+	<div id="authenticatorQuoteFormWrapper" align="center">
+		
+		<div class="quoteResultWrapper">
+			<label>Quick Quote</label>
+		</div>
+			<form method="post" id="quoteDetails">
+				<br /> 
+				<select id="rtoLocationSelector" class="QuickQuoteDropDownSelector">
+					<option selected="selected" value="">Select RTO Location</option>
+					<option value="1">Hyderabad</option>
+					<option value="2">Delhi</option>
+					<option value="3">Chennai</option>
+					<option value="4">Kolkata</option>
+					<option value="5">Pune</option>
+					<option value="6">Mumbai</option>
+					<option value="7">Bangalore</option>
+				</select>
+				<p>Registration Date <input id="regdate"></p>
+				
+				<select>
+					<option selected="selected" value="">Manufacturer</option>
+					<option value="1">ARIEL</option>
+					<option value="2">ASHOK LEYLAND</option>
+					<option value="3">ASTON MARTIN</option>
+					<option value="4">ATUL AUTO LTD</option>
+					<option value="5">AUDI</option>
+					<option value="6">AUSTIN</option>
+					<option value="7">Bentley</option>
+				</select>
+				<select>
+					<option selected="selected" value="">Model</option>
+					<option value="1">ALPSV CAMPER VAN</option>
+					<option value="2">DBS COUPE</option>
+					<option value="3">VIRAGE</option>
+					<option value="4">A3 1.8 TFSI PREMIUM PLUS</option>
+					<option value="5">A3 35 TDI TECHNOLOGY</option>
+				</select>
+				<br />
+				<div class="CheckboxWrapper">
+				<input type="checkbox" id="checkBox"/>
+				I agree to the terms and conditions
+				</div>
+				<br />
+				<a href="InsureAssistQuoteResult.html" style="background-color: #0088b8 " class="insureAssistButton" data-role="button">QuickQuote</a>
+		</form>
+	</div>
+	<div data-role="footer" data-position="fixed" data-theme="b">
+		<img class="footerAttributes" alt="branchLocator" src="images/branch_locator.png">
+		<img class="footerAttributes" alt="contactAgent" src="images/find_agent.png">
+		<img class="footerAttributes" alt="callUs" src="images/call_me.png">
+		<img class="footerAttributes" alt="LiveChat" src="images/live_chat.png">
+	</div>
+</body>
+</html>
