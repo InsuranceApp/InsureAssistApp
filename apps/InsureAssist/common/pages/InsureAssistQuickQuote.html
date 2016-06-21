@@ -1,0 +1,118 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>InsureAssist</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+<!--
+  			<link rel="shortcut icon" href="images/favicon.png">
+  			<link rel="apple-touch-icon" href="images/apple-touch-icon.png"> 
+  		-->
+<link rel="stylesheet"
+	href="http://code.jquery.com/mobile/git/jquery.mobile-git.css" />
+<link rel="stylesheet"
+	href="https://rawgithub.com/arschmitz/jquery-mobile-datepicker-wrapper/master/jquery.mobile.datepicker.css" />
+
+<link href="jqueryMobile/jquery.mobile-1.4.5.min.css" rel="stylesheet">
+
+<script>
+	window.$ = window.jQuery = WLJQ;
+</script>
+<script src="js/loginPage.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script
+	src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<link rel="stylesheet" href="css/InsureAssist.css" />
+<script>
+
+</script>
+
+</head>
+
+<body>
+	<div data-role="header" id="header" align="center">
+
+		<img src="images/logo.png" class="quoteResultImage" alt="InsureAssist">
+	</div>
+	<div id="authenticatorQuoteFormWrapper" align="center">
+
+		<div class="quoteResultWrapper">
+			<label>Quick Quote</label>
+		</div>
+		<form method="post" id="quoteDetails">
+			<br /> <select id="rtoLocationSelector"
+				class="QuickQuoteDropDownSelector">
+				<option selected="selected" value="">Select RTO Location</option>
+				<option value="Hyderabad">Hyderabad</option>
+				<option value="Delhi">Delhi</option>
+				<option value="Chennai">Chennai</option>
+				<option value="Kolkata">Kolkata</option>
+				<option value="Pune">Pune</option>
+				<option value="Mumbai">Mumbai</option>
+				<option value="Bangalore">Bangalore</option>
+			</select>
+			<p>
+				Registration Date <input type="text" data-inline="false"
+					data-mini="true" data-role="date" name="regdate" id="regdate"
+					placeholder="Registration Date">
+			</p>
+
+			<select id="manufacturer">
+				<option selected="selected" value="">Manufacturer</option>
+				<option value="ARIEL">ARIEL</option>
+				<option value="ASHOK LEYLAND">ASHOK LEYLAND</option>
+				<option value="ASTON MARTIN">ASTON MARTIN</option>
+				<option value="ATUL AUTO LTD">ATUL AUTO LTD</option>
+				<option value="AUDI">AUDI</option>
+				<option value="AUSTIN">AUSTIN</option>
+				<option value="Bentley">Bentley</option>
+			</select> 
+			<select id="model">
+				<option selected="selected" value="">Model</option>
+				<option value="ALPSV CAMPER VAN">ALPSV CAMPER VAN</option>
+				<option value="DBS COUPE">DBS COUPE</option>
+				<option value="VIRAGE">VIRAGE</option>
+				<option value="A3 1.8 TFSI PREMIUM PLUS">A3 1.8 TFSI PREMIUM PLUS</option>
+				<option value="A3 35 TDI TECHNOLOGY">A3 35 TDI TECHNOLOGY</option>
+			</select> 
+			<input type="checkbox" name="terms" id="terms"> <label
+				data-mini="true" for="terms" style="font-size: 11px;">I
+				agree to the <a href="#" style="text-decoration: none;">Terms
+					and Conditions</a>
+			</label> <a href="#" onclick="quickQuote()"
+				style="background-color: #0088b8" class="insureAssistButton"
+				data-role="button">QuickQuote</a>
+		</form>
+
+		<div data-role="footer" data-position="fixed" data-theme="a">
+			<div class="footerimg">
+				<figure>
+					<a href=""><img class="footer-img" alt="Locator"
+						src="images/branch_locator.png"></a>
+					<figcaption>Locator</figcaption>
+				</figure>
+				<figure>
+					<a href=""><img class="footer-img" alt="Find Agent"
+						src="images/find_agent.png"></a>
+					<figcaption>Find Agent</figcaption>
+				</figure>
+				<figure>
+					<a href=""><img class="footer-img" alt="Call Me Back"
+						src="images/call_me.png"></a>
+					<figcaption>Call Me Back</figcaption>
+				</figure>
+				<figure>
+					<a href=""><img class="footer-img" alt="Live Chat"
+						src="images/live_chat.png"></a>
+					<figcaption>Live Chat</figcaption>
+				</figure>
+
+
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

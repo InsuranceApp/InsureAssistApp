@@ -1,0 +1,118 @@
+<!DOCTYPE HTML>
+		<!-- Licensed Materials - Property of IBM
+			 5725-G92 (C) Copyright IBM Corp. 2006, 2013. All Rights Reserved.
+			 US Government Users Restricted Rights - Use, duplication or
+             disclosure restricted by GSA ADP Schedule Contract with IBM Corp. -->	
+<html>
+	<head>
+  		<meta charset="UTF-8">
+  		<title>InsureAssist</title>
+  		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+  		<!--
+  			<link rel="shortcut icon" href="images/favicon.png">
+  			<link rel="apple-touch-icon" href="images/apple-touch-icon.png"> 
+  		-->
+  		<link href="jqueryMobile/jquery.mobile-1.4.5.min.css" rel="stylesheet">
+  		
+  		<script>window.$ = window.jQuery = WLJQ;</script>
+  		
+		<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+		<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+		<link rel="stylesheet" href="css/InsureAssist.css"/>
+		 <script>
+		 
+		 </script>
+		 
+		 <script type="text/javascript">
+		 $(window).load(function() {
+			    $('.insureAssistButton').css('background-color','#0088b8'); 
+			    $('#logIn').css('background-color','#0088b8'); 
+			});
+			$(document).ready(function() {
+    $("#footer").load("pages/Footer.html"); 
+    
+});
+		</script>
+	
+		
+		
+		
+	</head>
+    	<body >
+	    	<div id="page" align="center">
+    			<div data-role="content" style="padding: 15px">
+    				<img src="images/logo.png" />
+    			</div>
+    			<label>Current Insurance Details</label>
+    			<form class="currentInsuranceDetails">
+			
+			<div data-role="controlgroup" id="controlgroup">
+				<input type="radio" name="radioNewCar" id="radioNew1" value="radio" onclick="newCar()">
+				<label for="radioNew1">Buy Insurance For New Car</label>
+				<input type="radio" name="radioNewCar" id="radioNew2" value="radio" >
+				<label for="radioNew2">Renew Existing or lapsed car policy from any insurer</label> 
+			</div>
+		</form>
+		<label>Is your currency policy with InsureAssist?</label>
+				<form class="currentInsuranceDetails" id="ifYesOrNo">
+					
+					<div data-role="controlgroup" id="controlgroup2">
+						<input type="radio" name="radio-choice" id="radio1" id="ifYes" onclick="renewPolicy()">
+						<label for="radio1">Yes</label>
+						<input type="radio" name="radio-choice" id="radio2" id="ifNo">
+						<label for="radio2">No</label>
+				</div>
+				</form>
+				<div data-role="footer" data-position="fixed" data-theme="a">
+                    <div class="footerimg">
+    				<figure>
+    				<a href=""><img class="footer-img" alt="Locator" src="images/branch_locator.png"></a>
+    				<figcaption>Locator</figcaption>
+    				</figure>
+    				<figure>
+    				<a href=""><img class="footer-img" alt="Find Agent" src="images/find_agent.png"></a>
+    				<figcaption>Find Agent</figcaption>
+    				</figure>
+    				<figure>
+    				<a href=""><img class="footer-img" alt="Call Me Back" src="images/call_me.png"></a>
+    				<figcaption>Call Me Back</figcaption>
+    				</figure>
+    				<figure>
+    				<a href=""><img class="footer-img" alt="Live Chat" src="images/live_chat.png"></a>
+    				<figcaption>Live Chat</figcaption>
+    				</figure>
+    				
+    				
+    			</div>
+    			</div>
+    		</div>
+    			
+    	
+
+				
+	<script type="text/javascript">
+		
+	function newCar(){
+	
+	 window.location.href="InsureAssistExpandableList.html";
+	 document.getElementById("ifYesOrNo").style.display="none";
+   	 document.getElementById('ifNo').style.display = 'none';
+   	 document.getElementById('ifYes').style.display = 'none';
+	
+	}
+	
+	</script>
+	
+	<script type="text/javascript">
+		
+	function renewPolicy(){
+	
+	 window.location.href="InsureAssistCalcPremiumForRenew.html";
+	 
+	
+	}
+	
+	</script>
+		</body>
+		</html>
+    			
