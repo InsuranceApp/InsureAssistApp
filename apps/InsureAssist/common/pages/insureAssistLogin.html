@@ -27,7 +27,6 @@
 
 <script type="text/javascript">
 	
-
 	function submit() {
 		if ($.trim($('#Username').val()) == '') {
 			alert('Username cannot be left blank');
@@ -52,13 +51,14 @@
 			<form id="loginForm">
 				<input id="Username" type="text" class="insureAssistLoginLabel"
 					placeholder="LoginId" /> <input id="Password" type="password"
-					class="insureAssistLoginLabel" placeholder="Password" /> <a
-					data-role="button" id="logIn" type="submit" onclick="submit()">Log
-					In</a>
+					class="insureAssistLoginLabel" placeholder="Password" /> 
+					<a href="#" style="background-color: #0088b8" class="insureAssistButton" data-role="button" onclick="submit()"
+					id="logiIn">Log In</a> 
 			</form>
 			<div id="getQuoteOrClaimWrapper">
-				<a href="#" class="insureAssistButton" data-role="button" onclick="callAPI()"
-					id="getQuote">Get Quote</a> <a href="#" class="insureAssistButton"
+				<a href="#" style="background-color: #0088b8" class="insureAssistButton" data-role="button" onclick="callAPI()"
+					id="getQuote">Get Quote</a> 
+					<a href="#" style="background-color: #0088b8" class="insureAssistButton"
 					data-role="button" id="claimCentre">Claim Centre</a>
 			</div>
 
