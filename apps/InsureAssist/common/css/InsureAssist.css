@@ -235,3 +235,9 @@ figcaption {
 	margin-left: 100px;
 	font-size: 15px;
 }
+
+.insureAssistloginButton{
+	background-color: rgb(255, 0, 255);
+	font-size: 15px;
+	font-family: Times New Roman;
+}
