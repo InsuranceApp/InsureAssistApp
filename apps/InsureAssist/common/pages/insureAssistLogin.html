@@ -18,25 +18,13 @@
 <script>
 	window.$ = window.jQuery = WLJQ;
 </script>
-    		<script src="js/loginPage.js"></script>
 
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script
 	src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
 <link rel="stylesheet" href="css/InsureAssist.css" />
 
-<script type="text/javascript">
-	
-	function submit() {
-		if ($.trim($('#Username').val()) == '') {
-			alert('Username cannot be left blank');
-		} else if ($.trim($('#Password').val()) == '') {
-			alert('Password cannot be left blank');
-		} else {
-			
-		}
-	}
-</script>
 
 
 
@@ -50,15 +38,15 @@
 		<div id="LoginForm">
 			<form id="loginForm">
 				<input id="Username" type="text" class="insureAssistLoginLabel"
-					placeholder="LoginId" /> <input id="Password" type="password"
+					placeholder="LoginId" /> 
+				<input id="Password" type="password"
 					class="insureAssistLoginLabel" placeholder="Password" /> 
-					<a href="#" style="background-color: #0088b8" class="insureAssistButton" data-role="button" onclick="submit()"
-					id="logiIn">Log In</a> 
+				<a class="insureAssistButton" data-role="button" id="logIn" type="submit" onclick="submit()">LogIn</a>
 			</form>
 			<div id="getQuoteOrClaimWrapper">
-				<a href="#" style="background-color: #0088b8" class="insureAssistButton" data-role="button" onclick="callAPI()"
+				<a class="insureAssistButton" data-role="button" onclick="submit()"
 					id="getQuote">Get Quote</a> 
-					<a href="#" style="background-color: #0088b8" class="insureAssistButton"
+				<a class="insureAssistButton"
 					data-role="button" id="claimCentre">Claim Centre</a>
 			</div>
 

@@ -11,9 +11,9 @@
 var pagesHistory = [];
 var currentPage = {};
 var path = "";
+var regCity ="";
 
 function wlCommonInit(){
-	// Special case for Windows Phone 8 only.
 	if (WL.Client.getEnvironment() == WL.Environment.ANDROID) {
 	    path = "www/default/";
 	}
@@ -28,41 +28,204 @@ function wlCommonInit(){
 	});
 }
 
-
+/*
+ * 
+ * onClick of GetQuote from login page
+ * CityAndManufacturerAPI is invoked
+ * 
+ */
 
 function submit(){
 	pagesHistory.push(path + "pages/insureAssistLogin.html");
-	$("#pagePort").load(path + "pages/InsureAssistQuickQuote.html");
-};
-
-function quickQuote(){
-	pagesHistory.push(path + "pages/InsureAssistQuickQuote.html");
-	$("#pagePort").load(path + "pages/InsureAssistQuoteResult.html", function callAPI(){
-			try{
+	/*
+	 * InsureAssistQuickQuote page is loaded and callCityAndManufacturerAPI is invoked
+	 * 
+	 */
+	$("#pagePort").load(path + "pages/InsureAssistQuickQuote.html", function callCityAndManufacturerAPI(){
+		try{
 			WL.Logger.info("adapter is invoked");
-		          var invocationData = {
-		                  adapter : 'InsureAssistQuickQuoteRestAdapter',
-		                  procedure : 'getInsureAssistQuickQuoteRestAdapter',
-		                  parameters : []
-		              };
+	          var invocationData = {
+	                  adapter : 'InsureAssistHTTPAdapter',
+	                  procedure : 'getAllCitiesInsureAssistHTTPAdapter',
+	                  parameters : []
+	              };
 
-		          WL.Client.invokeProcedure(invocationData,{
-		              onSuccess : getAPICallSuccess,
-		              onFailure : getAPICallFailure,
-		          });
-			}
-			catch(e){
-				console.log(e instanceof TypeError);
-				console.log(e.message);
-			}
-		 
+	          WL.Client.invokeProcedure(invocationData,{
+	              onSuccess : getCitiesCallSuccess,
+	              onFailure : getCitiesCallFailure,
+	          });
+		
+		}
+		catch(e){
+		}
 	});
 };
 
+/*
+ * onSuccess of Cities call
+ */
 
+function getCitiesCallSuccess(result){
+	var responseText=result['responseText'];
+	var responseText = responseText.replace("/*-secure-","");
+	var responseText = responseText.replace("*/","");
+	var responseText = JSON.parse(responseText);
+	var array = responseText['array'];
+	WL.Logger.info("success response for array"+array.length);
+	var options="";
+	 for(var i=0; i< array.length; i++){
+		 var arrayPos = array[i];
+		 options = $('<option/>').html(arrayPos.city_name);
+         $("#rtoLocationSelector").append(options);
+         WL.Logger.info("array[i]"+arrayPos.city_name);
+     }
+     
+     //after successfull cities call manufacturer API will be invoked
+     callManufactureAPI();
+}
 
+/*
+ * on failure of cities call
+ */
+function getCitiesCallFailure(){
+	alert("failure");
+}
 
+/*
+ * call to manufacturer API
+ */
 
+function callManufactureAPI(){
+	try{
+		WL.Logger.info("callManufactureAPI adapter is invoked");
+	          var invocationData = {
+	                  adapter : 'InsureAssistHTTPAdapter',
+	                  procedure : 'getAllManufacturersInsureAssistHTTPAdapter',
+	                  parameters : []
+	              };
+
+	          WL.Client.invokeProcedure(invocationData,{
+	              onSuccess : getManufacturersAPICallSuccess,
+	              onFailure : getManufacturersAPICallFailure,
+	          });
+		}
+		catch(e){
+			console.log(e.message);
+		}
+}
+
+/*
+ * onSuccess of Manufacturer API call
+ */
+
+function getManufacturersAPICallSuccess(result){
+	WL.Logger.info("response from manufacturer is "+result);
+	var responseText=result['responseText'];
+	var responseText = responseText.replace("/*-secure-","");
+	var responseText = responseText.replace("*/","");
+	var responseText = JSON.parse(responseText);
+	var array = responseText['array'];
+	WL.Logger.info("success response for array"+array.length);
+	var options = "";
+	 for(var i=0; i< array.length; i++){
+		 var arrayPos = array[i];
+		 options = $('<option/>').html(arrayPos.manufacturer_name);
+		 $("#manufacturer").append(options);
+         WL.Logger.info("array[i]"+arrayPos.manufacturer_name);
+     }
+	 
+}
+/*
+ * onFailure of Manufacturer API call
+ */
+function getManufacturersAPICallFailure(){
+	WL.Logger.info("response from manufacturer is failed ");
+}
+/*
+ * call to models API
+ */
+function callModelsAPI(){
+	try{
+		var model=$('#manufacturer').val();
+		
+		WL.Logger.info("Models adapter is invoked"+model);
+          var invocationData = {
+                  adapter : 'InsureAssistHTTPAdapter',
+                  procedure : 'getModelsInsureAssistHTTPAdapter',
+                  parameters : [model]
+              };
+
+          WL.Client.invokeProcedure(invocationData,{
+              onSuccess : getModelsCallSuccess,
+              onFailure : getModelsCallFailure,
+          });
+	
+	}
+	catch(e){
+		
+	}
+}
+/*
+ * onSuccess of models API call
+ */
+function getModelsCallSuccess(result){
+	WL.Logger.info("response from model is "+result);
+	var responseText=result['responseText'];
+	var responseText = responseText.replace("/*-secure-","");
+	var responseText = responseText.replace("*/","");
+	var responseText = JSON.parse(responseText);
+	var array = responseText['array'];
+	WL.Logger.info("success response for array"+array.length);
+	var options = "";
+	$("#model").empty();
+	for(var i=0; i< array.length; i++){
+		 var arrayPos = array[i];
+		 options = $('<option/>').html(arrayPos.model_name);
+		 $("#model").append(options);
+         WL.Logger.info(array[i]+arrayPos.model_name);
+     }
+	 
+}
+/*
+ * onFailure of models API call 
+ */
+function getModelsCallFailure(){
+	alert('failure');
+}
+
+/*
+ * call to quickQuoteAPI
+ */
+function quickQuote(){
+	pagesHistory.push(path + "pages/InsureAssistQuickQuote.html");
+	regCity = $('#rtoLocationSelector').val();
+	regManufacturer = $('#manufacturer').val();
+	$("#pagePort").load(path + "pages/InsureAssistQuoteResult.html");
+	callAPI(regCity,regManufacturer);
+}
+	
+	function callAPI(regCity,regManufacturer){
+		try{
+		WL.Logger.info("adapter is invoked and regCity "+regCity+" : and : "+regManufacturer);
+		var body = { city: regCity,
+				maufacturer: regManufacturer
+		};
+	          var invocationData = {
+	                  adapter : 'InsureAssistHTTPAdapter',
+	                  procedure : 'getIDVAndPriceInsureAssistHTTPAdapters',
+	                  parameters : [body]
+	              };
+	          WL.Client.invokeProcedure(invocationData,{
+	              onSuccess : getAPICallSuccess,
+	              onFailure : getAPICallFailure,
+	          });
+		}
+		catch(e){
+			console.log(e instanceof TypeError);
+			console.log(e.message);
+		}
+	 
+}
 
 function getAPICallSuccess(result){
 	var responseText=result['responseText'];
@@ -74,17 +237,12 @@ function getAPICallSuccess(result){
 	var array = array[0];
 	var price = array['price'];
 	var idv = array['idv'];
-	alert("price is: "+price+" idv is: "+idv);
-	var label=document.getElementById("yearlyPremium");
-	label.setAttribute("value", price)
-	WL.Logger.info("after label"+label.getAttribute("value"));
-	//document.getElementById('yearlyPremium').valueOf(price);
-	
-	WL.Logger.info("after");
+	var label=document.getElementById("getYearlyPremiumWrapper");
+	label.innerHTML= "Yearly Premium: "+ price;
+	WL.Logger.info("after label"+label.innerHTML);
 }
 
 function getAPICallFailure(){
 	alert("failure");
 }
-
 
