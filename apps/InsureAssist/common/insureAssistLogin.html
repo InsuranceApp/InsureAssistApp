@@ -1,71 +1,97 @@
 <!DOCTYPE HTML>
-		<!-- Licensed Materials - Property of IBM
+<!-- Licensed Materials - Property of IBM
 			 5725-G92 (C) Copyright IBM Corp. 2006, 2013. All Rights Reserved.
 			 US Government Users Restricted Rights - Use, duplication or
-             disclosure restricted by GSA ADP Schedule Contract with IBM Corp. -->	
+             disclosure restricted by GSA ADP Schedule Contract with IBM Corp. -->
 <html>
-	<head>
-  		<meta charset="UTF-8">
-  		<title>InsureAssist</title>
-  		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
-  		<!--
+<head>
+<meta charset="UTF-8">
+<title>InsureAssist</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+<!--
   			<link rel="shortcut icon" href="images/favicon.png">
   			<link rel="apple-touch-icon" href="images/apple-touch-icon.png"> 
   		-->
-  		<link href="jqueryMobile/jquery.mobile-1.4.5.min.css" rel="stylesheet">
-  		
-  		<script>window.$ = window.jQuery = WLJQ;</script>
-  		
-		<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-		<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-		<link rel="stylesheet" href="css/InsureAssist.css"/>
-		 <script>
-		 
-		 </script>
-		 
-		 <script type="text/javascript">
-		 $(window).load(function() {
-			    $('.insureAssistButton').css('background-color','#0088b8'); 
-			    $('#logIn').css('background-color','#0088b8'); 
-			});
-			$(document).ready(function() {
-    $("#footer").load("pages/Footer.html"); 
-    
-});
-		</script>
-	
-		
-		
-		
-	</head>
-	
-	<body onload="isPopup(); setFocus();">
-		<div id="authenticatorLoginFormWrapper" align="center">
-			<br />
-			<img alt="InsureAssist" src="images/logo.png">
-    		
-			<h1>Welcome. Please log in</h1>
-			<div id="LoginForm">
-    				<form id="loginForm" action="">
-						<input id="Username" type="text" class="insureAssistLoginLabel" placeholder="LoginId"/>
-						<input id="Password" type="text" class="insureAssistLoginLabel" placeholder="Password"/>
-						<a href="InsureAssistQuickQuote.html" data-role="button" id="logIn">Log In</a>
-					</form>
-					<div id="getQuoteOrClaimWrapper">
-						<a href="#" class="insureAssistButton" data-role="button" id="getQuote">Get Quote</a>
-						<a href="#" class="insureAssistButton" data-role="button" id="claimCentre">Claim Centre</a>
-					</div>
-		
-    			</div>
+<link href="jqueryMobile/jquery.mobile-1.4.5.min.css" rel="stylesheet">
 
-			<br />
-			<a href="" class="insureAssistLoginLabel">Forgot ID/Password?</a>
-			<a href="" class="insureAssistLoginLabel">Create Account</a>
-			<br/>
-			<br/>
+<script>
+	window.$ = window.jQuery = WLJQ;
+</script>
+    		<script src="js/loginPage.js"></script>
+
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script
+	src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<link rel="stylesheet" href="css/InsureAssist.css" />
+
+<script type="text/javascript">
+	
+	function submit() {
+		if ($.trim($('#Username').val()) == '') {
+			alert('Username cannot be left blank');
+		} else if ($.trim($('#Password').val()) == '') {
+			alert('Password cannot be left blank');
+		} else {
+			
+		}
+	}
+</script>
+
+
+
+
+</head>
+
+<body>
+	<div id="authenticatorLoginFormWrapper" align="center">
+		<br /> <img alt="InsureAssist" src="images/logo.png">
+		<h1>Welcome. Please log in</h1>
+		<div id="LoginForm">
+			<form id="loginForm">
+				<input id="Username" type="text" class="insureAssistLoginLabel"
+					placeholder="LoginId" /> <input id="Password" type="password"
+					class="insureAssistLoginLabel" placeholder="Password" /> 
+					<a href="#" style="background-color: #0088b8" class="insureAssistButton" data-role="button" onclick="submit()"
+					id="logiIn">Log In</a> 
+			</form>
+			<div id="getQuoteOrClaimWrapper">
+				<a href="#" style="background-color: #0088b8" class="insureAssistButton" data-role="button" onclick="callAPI()"
+					id="getQuote">Get Quote</a> 
+					<a href="#" style="background-color: #0088b8" class="insureAssistButton"
+					data-role="button" id="claimCentre">Claim Centre</a>
+			</div>
+
 		</div>
-		<div data-role="footer" data-position="fixed" data-theme="b">
-		<div id="footer"></div>
+
+		<br /> <a href="" class="insureAssistLoginLabel">Forgot
+			ID/Password?</a> <a href="" class="insureAssistLoginLabel">Create
+			Account</a> <br /> <br />
+		<div data-role="footer" data-position="fixed" data-theme="a">
+			<div class="footerimg">
+				<figure>
+					<a href=""><img class="footer-img" alt="Locator"
+						src="images/branch_locator.png"></a>
+					<figcaption>Locator</figcaption>
+				</figure>
+				<figure>
+					<a href=""><img class="footer-img" alt="Find Agent"
+						src="images/find_agent.png"></a>
+					<figcaption>Find Agent</figcaption>
+				</figure>
+				<figure>
+					<a href=""><img class="footer-img" alt="Call Me Back"
+						src="images/call_me.png"></a>
+					<figcaption>Call Me Back</figcaption>
+				</figure>
+				<figure>
+					<a href=""><img class="footer-img" alt="Live Chat"
+						src="images/live_chat.png"></a>
+					<figcaption>Live Chat</figcaption>
+				</figure>
+			</div>
 		</div>
-	</body>
+	</div>
+
+</body>
 </html>
