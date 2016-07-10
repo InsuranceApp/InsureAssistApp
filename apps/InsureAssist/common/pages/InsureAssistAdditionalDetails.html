@@ -19,6 +19,11 @@
     		<script src="js/messages.js"></script>
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+<script type="text/javascript">
+	
+</script>
+
 <link rel="stylesheet" href="css/InsureAssist.css">
 </head>
 
@@ -31,38 +36,40 @@
 			<label>Get more protection with Add-on Covers</label>
 		</div>
 		<br/>
-		<form  id="addOnCoverPage" method="get">
-			  <input type="checkbox" id="accessories" value="accessories">Get Additional Protection For accessories<br>
-			  <input type="checkbox" id="depreciationCover" value="depreciationCover" checked="checked">Zero depreciation cover <br>
-			  <input type="checkbox" id="engineCover" value="engineCover" checked="checked">Engine Protect Plus cover <br>
-			  <input type="checkbox" id="accidentCover" value="accidentCover" checked="checked">Personal Accident cover for passengers <br>
-			  <input type="checkbox" id="garageCover" value="garageCover" checked="checked">Garage Cash cover (Daily allowance) <br>
-			  <input type="checkbox" id="hospitalizationCover" value="hospitalizationCover" checked="checked">Accidental Hospitalization cover <br>
-			  <input type="checkbox" id="consumableCover" value="consumableCover" checked="checked">Consumable Cover <br>
-			  <a href="InsureAssistQuickQuote.html" style="background-color: #0088b8" class="insureAssistButton" data-role="button">Submit</a>
+		<form  name="addOnCoverPage" method="get">
+			  <input type="checkbox" name="addOnCoverProduct" id="accessories" value="200" onchange="checkTotal()" />Get Additional Protection For accessories<br/>
+			  <input type="checkbox" name="addOnCoverProduct" id="depreciationCover" value="300" onchange="checkTotal()" />Zero depreciation cover <br/>
+			  <input type="checkbox" name="addOnCoverProduct" id="engineCover" value="400" onchange="checkTotal()" />Engine Protect Plus cover <br/>
+			  <input type="checkbox" name="addOnCoverProduct" id="accidentCover" value="500" onchange="checkTotal()" />Personal Accident cover for passengers <br/>
+			  <input type="checkbox" name="addOnCoverProduct" id="garageCover" value="600" onchange="checkTotal()" />Garage Cash cover (Daily allowance) <br/>
+			  <input type="checkbox" name="addOnCoverProduct" id="hospitalizationCover" onchange="checkTotal()" value="700" />Accidental Hospitalization cover <br/>
+			  <input type="checkbox" name="addOnCoverProduct" id="consumableCover" onchange="checkTotal()" value="800" />Consumable Cover <br/>
+			  <div id="getAddOnPremiumWrapper" style="background-color: orange;" data-inline="true">
+			  </div>
+			 <!--  <a href="InsureAssistQuickQuote.html" style="background-color: #0088b8" class="insureAssistButton" data-role="button">Submit</a> -->
 		</form>
 		<br/>
 				<div data-role="footer" data-position="fixed" data-theme="a">
 			<div class="footerimg">
 				<figure>
 					<a href=""><img class="footer-img" alt="Locator"
-						src="../images/branch_locator.png"></a>
+						src="images/branch_locator.png"></a>
 					<figcaption>Locator</figcaption>
 				</figure>
 				<figure>
 					<a href=""><img class="footer-img" alt="Find Agent"
-						src="../images/find_agent.png"></a>
+						src="images/find_agent.png"></a>
 					<figcaption>Find Agent</figcaption>
 				</figure>
 				<figure>
 					<a href=""><img class="footer-img" alt="Call Me Back"
-						src="../images/call_me.png"></a>
+						src="images/call_me.png"></a>
 					<figcaption>Call Me Back</figcaption>
 				</figure>
 				<figure>
 					
 					<a href=""><img class="footer-img" alt="Live Chat"
-						src="../images/live_chat.png"></a>
+						src="images/live_chat.png"></a>
 					<figcaption>Live Chat</figcaption>
 				</figure>
 			</div>
@@ -70,3 +77,4 @@
 		</div>
 		
 		</body>
+		</html>
