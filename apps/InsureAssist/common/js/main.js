@@ -11,7 +11,8 @@
 var pagesHistory = [];
 var currentPage = {};
 var path = "";
-var regCity ="";
+var regCity = "";
+var regModel = "";
 
 function wlCommonInit(){
 	if (WL.Client.getEnvironment() == WL.Environment.ANDROID) {
@@ -200,13 +201,26 @@ function quickQuote(){
 	pagesHistory.push(path + "pages/InsureAssistQuickQuote.html");
 	regCity = $('#rtoLocationSelector').val();
 	regManufacturer = $('#manufacturer').val();
+	regModel = $('#model').val();
+	regDate = $('#regdate').val();
+	WL.Logger.info("rtoLocationSelector: "+regCity+" manufacturer: "+regManufacturer+" model: "+regModel);
 	$("#pagePort").load(path + "pages/InsureAssistQuoteResult.html");
-	callAPI(regCity,regManufacturer);
+	setValues(regCity,regManufacturer,regDate);
+	callAPI(regCity,regManufacturer,regDate,regModel);
 }
 	
-	function callAPI(regCity,regManufacturer){
+function setValues(regCity,regManufacturer,regDate){
+	var label = document.getElementById("quoteResultImageWrapper");
+	WL.Logger.info("regRTOLoc : "+label);
+}
+
+
+
+	function callAPI(regCity,regManufacturer,regDate,regModel){
 		try{
 		WL.Logger.info("adapter is invoked and regCity "+regCity+" : and : "+regManufacturer);
+		
+		
 		var body = { city: regCity,
 				maufacturer: regManufacturer
 		};
@@ -217,7 +231,7 @@ function quickQuote(){
 	              };
 	          WL.Client.invokeProcedure(invocationData,{
 	              onSuccess : getAPICallSuccess,
-	              onFailure : getAPICallFailure,
+	              onFailure : getAPICallFailure
 	          });
 		}
 		catch(e){
@@ -228,6 +242,8 @@ function quickQuote(){
 }
 
 function getAPICallSuccess(result){
+	var regCityLabel=document.getElementById("regRTOLoc");
+	WL.Logger.info("rtoLocationSelector: "+regCity);
 	var responseText=result['responseText'];
 	var responseText = responseText.replace("/*-secure-","");
 	var responseText = responseText.replace("*/","");
@@ -239,6 +255,7 @@ function getAPICallSuccess(result){
 	var idv = array['idv'];
 	var label=document.getElementById("getYearlyPremiumWrapper");
 	label.innerHTML= "Yearly Premium: "+ price;
+	
 	WL.Logger.info("after label"+label.innerHTML);
 }
 
@@ -246,3 +263,24 @@ function getAPICallFailure(){
 	alert("failure");
 }
 
+function checkTotal() {
+	 WL.Logger.info("inside checkTotal");
+    var sum = 0;
+    for (i=0;i<document.addOnCoverPage.addOnCoverProduct.length;i++) {
+		  if (document.addOnCoverPage.addOnCoverProduct[i].checked) {
+		  	sum = sum + parseInt(document.addOnCoverPage.addOnCoverProduct[i].value);
+		  }
+		}
+    var label=document.getElementById("getAddOnPremiumWrapper");
+	label.innerHTML= "TotalAddOnCoverage: "+ sum;
+    WL.Logger.info("total is"+sum);
+}
+
+function callExpandableList(){
+	pagesHistory.push(path + "pages/InsureAssistQuoteResult.html");
+	$("#pagePort").load(path + "pages/InsureAssistExpandableList.html");
+}
+function onBuyQuote(){
+	pagesHistory.push(path + "pages/InsureAssistExpandableList.html");
+	$("#pagePort").load(path + "pages/InsureAssistAdditionalDetails.html");
+}
