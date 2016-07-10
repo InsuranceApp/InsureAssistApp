@@ -20,6 +20,12 @@
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 <link rel="stylesheet" href="css/InsureAssist.css">
+<script>
+         $(function() {
+            $( "#tabs-1" ).tabs();
+            $( "#tabs-1" ).tabs("disable",2);
+         });
+      </script>
 </head>
 
 
@@ -33,25 +39,25 @@
 			<label>Quick Quote</label>
 		</div>
 		<div id="QuoteResultButtonWrapper" style="display: inline;">
-			<form>
-				<a href="InsureAssistQuoteResult.html" style="background-color: #0088b8" class="insureAssistButton" data-role="button" onclick="callAPI()">Key Features</a> 
-				<a href="InsureAssistQuoteResult.html" style="background-color: #0088b8" class="insureAssistButton" data-role="button">Premium Calculator</a>
-			</form>
+			<a href="#" style="background-color: #0088b8" class="insureAssistButton" data-role="button">Key Features</a> 
+			<a href="#" style="background-color: #0088b8" class="insureAssistButton" data-role="button">Premium Calculator</a>
 		</div>
-		<div id="getYearlyPremiumWrapper" style="background-color: orange;" data-inline="true">
-			
-		</div>
+		
 		<div id="quoteResultImageWrapper">
 			<img id="quickQuoteCar" alt="InsureAssist" src="images/car_small.png">
 		</div>
-		<div id="quoteResultLabelWrapper">
-			<label id="rtoLocation">RTO Location: Hyderabad</label> 
-			<label id="regDate">Registration Date: 24/07/2014</label> 
-			<label id="manufacturer">Manufacturer: Honda</label>
+		<div id="regRTOLoc" style="background-color: orange;" data-inline="true">
+		</div>
+		<div id="regDate" style="background-color: orange;" data-inline="true">
+		</div>
+		<div id="regManufacturer" style="background-color: orange;" data-inline="true">
+		</div>
+		<div id="getYearlyPremiumWrapper" style="background-color: orange;" data-inline="true">
+			<label>Yearly Premium</label>
 		</div>
 		<div>
-			<a href="InsureAssistQuickQuote.html" style="background-color: #0088b8" class="insureAssistButton" data-role="button">Recalculate</a> 
-			<a href="pages/InsureAssistAdditionalDetails.html" style="background-color: #0088b8" class="insureAssistButton" data-role="button">Buy Online</a>
+			<a href="#" style="background-color: #0088b8" class="insureAssistButton" data-role="button">Recalculate</a> 
+			<a href="#" style="background-color: #0088b8" class="insureAssistButton" data-role="button" onclick="callExpandableList()">Buy Online</a>
 		</div>
 		<div class="save" id="quote">
 			<img id="save" src="images/save.png" hspace="30"> 
@@ -79,6 +85,5 @@
 			</div>
 		</div>
 	</div>
-
 </body>
 </html>
