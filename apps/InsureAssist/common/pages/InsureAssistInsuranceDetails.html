@@ -27,23 +27,26 @@
     			<label>Current Insurance Details</label>
     			<form class="currentInsuranceDetails">
 			
-			<div data-role="controlgroup" id="controlgroup">
-				<input type="radio" name="radioNewCar" id="radioNew1" value="radio" onclick="newCar()">
-				<label for="radioNew1">Buy Insurance For New Car</label>
-				<input type="radio" name="radioNewCar" id="radioNew2" value="radio" >
-				<label for="radioNew2">Renew Existing or lapsed car policy from any insurer</label> 
-			</div>
+					<div data-role="controlgroup" id="controlgroup">
+						<input type="radio" name="radioNewCar" id="radioNew1" value="radio">
+						<label for="radioNew1">Buy Insurance For New Car</label>
+						<input type="radio" name="radioNewCar" id="radioNew2" value="radio" onclick="renewPolicy()" >
+						<label for="radioNew2">Renew Existing or lapsed car policy from any insurer</label> 
+					</div>
 		</form>
-		<label>Is your currency policy with InsureAssist?</label>
-				<form class="currentInsuranceDetails" id="ifYesOrNo">
-					
+		<div id="currentinsurer">
+		
+				<form class="currentInsuranceDetails" id="ifYesOrNo" style="display: none;">
+					<label>Is your current policy with InsureAssist?</label>
 					<div data-role="controlgroup" id="controlgroup2">
-						<input type="radio" name="radio-choice" id="radio1" id="ifYes" onclick="renewPolicy()">
+						<input type="radio" name="radio-choice" id="radio1" id="ifYes" onclick="renewPolicyPremium()" >
 						<label for="radio1">Yes</label>
 						<input type="radio" name="radio-choice" id="radio2" id="ifNo">
 						<label for="radio2">No</label>
-				</div>
+					</div>
 				</form>
+					<a  onclick="callExpandableList()" style="background-color: #0088b8" class="insureAssistButton" data-role="button">Continue</a>
+				</div>
 				<div data-role="footer" data-position="fixed" data-theme="a">
                     <div class="footerimg">
     				<figure>

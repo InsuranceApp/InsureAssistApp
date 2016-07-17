@@ -30,10 +30,11 @@
 				<div data-role="collapsible" id="collapsible">
 					<h2>Registration Details</h2>
 					<form>
-						<input type="text" id="username" name="username"
-							placeholder="UserName" /> <label>Registration Date</label> <input
-							type="datetime" name="datetime" id="datetime"
-							placeholder="DD/MM/YYYY"> <label>Current
+						<input type="text" id="regusername" name="username"
+							placeholder="UserName" readonly/> 
+						<input type="datetime" name="datetime" id="regdatetime"
+							placeholder="DD/MM/YYYY" readonly> 
+						<label>Current
 							Registration Type</label> <input type="radio" name="radio-choice"
 							id="radioCompany" value="Company"><label for="company">Company</label>
 
@@ -44,58 +45,72 @@
 				<div data-role="collapsible" id="collapsible0">
 					<h2>Personal Details</h2>
 					<form>
-						<label>Occupation</label> <select id="occupation">
-							<option value="1">SelfEmployed</option>
+						<select id="occupation">
+							<option value="1">Occupation</option>
 							<option value="2">Student</option>
 							<option value="3">Businessman</option>
 							<option value="4">Salried Pvt Sector</option>
 							<option value="5">Salried Government Sector</option>
-							<option value="6">Others</option>
-						</select> <label>Family Size</label> <select id="familySize">
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-							<option value="6">6</option>
-						</select> <label>Marital Status</label> <select id="maritalStatus">
-							<option value="1">Married</option>
+							<option value="6">SelfEmployed</option>
+							<option value="7">Others</option>
+						</select> 
+						<div id="occupationerror" class="error" style="display: none; color: red;">Mandatory Value. Cannot be left empty</div>
+						<select id="familySize">
+							<option value="FamilySize">Family Size</option>
+							<option value="2">1</option>
+							<option value="3">2</option>
+							<option value="4">3</option>
+							<option value="5">4</option>
+							<option value="6">5</option>
+						</select>
+						<div id="familySizeerror" class="error" style="display: none; color: red;">Mandatory Value. Cannot be left empty</div> 
+						<select id="maritalStatus">
+							<option value="1">Marital Status</option>
 							<option value="2">Unmarried</option>
 							<option value="3">Divorced</option>
-						</select> <label>Number Of Family Members Driving the vehicle</label> <select
-							id="familyMembers">
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-							<option value="6">6</option>
-						</select> <label>Estimated Monthly Mileage</label> <select
-							id="monthlyMileage">
-							<option value="1">500</option>
-							<option value="2">1000</option>
-							<option value="3">1500</option>
+							<option value="4">Married</option>
+						</select> 
+						<div id="maritalStatuserror" class="error" style="display: none; color: red;">Mandatory Value. Cannot be left empty</div>
+						 <select id="familyMembers">
+							<option value="1">Number Of Family Members Driving the vehicle</option>
+							<option value="2">1</option>
+							<option value="3">2</option>
+							<option value="4">3</option>
+							<option value="5">4</option>
+							<option value="6">5</option>
 						</select>
+						<div id="familyMemberserror" class="error" style="display: none; color: red;">Mandatory Value. Cannot be left empty</div>
+						<select id="monthlyMileages">
+							<option value="1">Estimated Monthly Mileage</option>
+							<option value="2">500</option>
+							<option value="3">1000</option>
+							<option value="4">1500</option>
+						</select>
+						<div id="monthlyMileageserror" class="error" style="display: none; color: red;">Mandatory Value. Cannot be left empty</div>
 					</form>
 				</div>
 				<div data-role="collapsible" id="collapsible1">
 					<h2>Vehicle Details</h2>
 					<form>
-						<input type="text" id="manufacturer" name="manufacturer"
-							placeholder="Manufacturer" /> <input type="text" id="model"
-							name="model" placeholder="Model" /> <input type="text"
+						<input type="text" id="regManufacturer" name="manufacturer"
+							placeholder="Manufacturer" readonly/> 
+						<input type="text" id="registeredModelEx"
+							name="registeredModel" placeholder="Model" readonly/> 
+						<input type="text"
 							id="cubicCapacity" name="cubicCapacity"
-							placeholder="Cubic Capacity" /> <input type="text"
+							placeholder="Cubic Capacity" readonly/> 
+						<input type="text"
 							id="exShowroomPrice" name="exShowroomPrice"
-							placeholder="Ex-Showroom Price" />
+							placeholder="Ex-Showroom Price" readonly/>
 					</form>
 				</div>
 				<div data-role="collapsible" id="collapsible2">
 					<h2>Insured Contact Details</h2>
 					<form>
-						<input type="text" id="mobile" name="mobile"
-							placeholder="Mobile Number" /> <input type="text" id="email"
-							name="email" placeholder="Email Id" />
+						<input type="text" id="mobileNum" name="mobile"
+							placeholder="Mobile Number" readonly/> 
+						<input type="text" id="emailId"
+							name="email" placeholder="Email Id" readonly/>
 					</form>
 				</div>
 			</div>

@@ -14,7 +14,6 @@
 	href="http://code.jquery.com/mobile/git/jquery.mobile-git.css" />
 <link rel="stylesheet"
 	href="https://rawgithub.com/arschmitz/jquery-mobile-datepicker-wrapper/master/jquery.mobile.datepicker.css" />
-
 <link href="jqueryMobile/jquery.mobile-1.4.5.min.css" rel="stylesheet">
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script
@@ -36,32 +35,48 @@
 			<label>Quick Quote</label>
 		</div>
 		<form method="post" id="quoteDetails">
-			<br /> <select id="rtoLocationSelector" class="QuickQuoteDropDownSelector">
+			<br /> 
+			<select id="rtoLocationSelector" class="QuickQuoteDropDownSelector">
 				<option selected="selected">Select RTO Location</option>
-				
 			</select>
+			<div id="rtolocationerror" class="error" style="display: none; color: red;">Please select RTO Location</div>
 			<select id="manufacturer" onchange="callModelsAPI()">
 				<option selected="selected">Manufacturer</option>
 			</select> 
+			<div id="manufacturererror" class="error" style="display: none; color: red;">Please select manufacturer of your vehicle</div>
+			
 			<select id="model">
 				<option selected="selected">Model</option>
 			</select> 
-			<input type="date" data-inline="false"
-					data-mini="true" data-role="date" name="regdate" id="regdate"
-					placeholder="Registration Date">
-			<input type="tel" data-inline="false"
-					data-mini="true" name="mobileNumber" id="mobileNumber"
-					placeholder="Contact Number">
-			<input type="email" data-inline="false"
-					data-mini="true" name="email" id="email"
-					placeholder="email">
-			<input type="checkbox" name="terms" id="terms"> <label
+			<div id="modelerror" class="error" style="display: none; color: red;">Please select model of your vehicle</div>
+			
+			<input type="date" data-inline="false" data-mini="true" data-role="date" name="regdate" id="regdate" placeholder="Registration Date">
+			<div id="regdateerror" class="error" style="display: none; color: red;">Please enter Registration Date in MM/DD/YYYY</div>
+			
+			<input type="tel" data-inline="false" data-mini="true" name="mobileNumber" id="mobileNumber" placeholder="Contact Number">
+			<div id="regMobileNumberError" class="error" style="display: none; color: red;">Please enter correct mobile number</div>
+			
+			<input type="email" data-inline="false" data-mini="true" name="email" id="email" placeholder="email">
+			<div id="regEmailError" class="error" style="display: none; color: red;">Please enter correct email address</div>
+			
+			<input type="checkbox" name="terms" id="terms"> 
+			<label
 				data-mini="true" for="terms" style="font-size: 11px;">I
-				agree to the <a href="#" style="text-decoration: none;">Terms
+				agree to the 
+				<a href="#" style="text-decoration: none;" onclick="termsandconditions()" id="termslink">Terms
 					and Conditions</a>
-			</label> <a href="#" onclick="quickQuote()"
-				style="background-color: #0088b8" class="insureAssistButton"
-				data-role="button">QuickQuote</a>
+			</label> 
+				<div id="termserror" class="error">Please check the terms and conditions</div>
+				<div id="myModal" class="modal" style="display: none;"> 
+
+			  <!-- Modal content -->
+			  <div class="modal-content">
+			    <span class="close" onclick="hideTermsAndConditions()">×</span>
+			    <p>We value you as a customer and respect your right to privacy. In the process of operating the Web Site, we may become aware of information relating to you, including information that is of a confidential nature. We are strongly committed to protecting your privacy online and have taken steps to protect such information. To aid us in protecting your privacy, you should maintain secrecy of your login ID and password, if any, provided to you in connection with your account with www.icicilombard.com
+			    Collecting your personal information</p>
+			  </div>
+			</div> 
+			<a href="#" onclick="quickQuote()" style="background-color: #0088b8" class="insureAssistButton" data-role="button">QuickQuote</a>
 		</form>
 
 		<div data-role="footer" data-position="fixed" data-theme="a">
