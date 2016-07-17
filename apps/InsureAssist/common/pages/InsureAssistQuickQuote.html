@@ -16,10 +16,6 @@
 	href="https://rawgithub.com/arschmitz/jquery-mobile-datepicker-wrapper/master/jquery.mobile.datepicker.css" />
 
 <link href="jqueryMobile/jquery.mobile-1.4.5.min.css" rel="stylesheet">
-
-<script>
-	window.$ = window.jQuery = WLJQ;
-</script>
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script
 	src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
@@ -30,8 +26,8 @@
 </head>
 
 <body>
-	<div data-role="header" id="header" align="center">
-
+	<div data-role="header" id="header" align="center" data-inline="true">
+		<img src="images/Back11.png" style="float: left;" class="backButton" alt="backButton" onclick="previousPage()">
 		<img src="images/logo.png" class="quoteResultImage" alt="InsureAssist">
 	</div>
 	<div id="authenticatorQuoteFormWrapper" align="center">
@@ -40,21 +36,25 @@
 			<label>Quick Quote</label>
 		</div>
 		<form method="post" id="quoteDetails">
-			<br /> <select id="rtoLocationSelector"
-				class="QuickQuoteDropDownSelector">
+			<br /> <select id="rtoLocationSelector" class="QuickQuoteDropDownSelector">
 				<option selected="selected">Select RTO Location</option>
 				
 			</select>
-			<input type="text" data-inline="false"
-					data-mini="true" data-role="date" name="regdate" id="regdate"
-					placeholder="Registration Date">
-			
 			<select id="manufacturer" onchange="callModelsAPI()">
 				<option selected="selected">Manufacturer</option>
 			</select> 
 			<select id="model">
 				<option selected="selected">Model</option>
 			</select> 
+			<input type="date" data-inline="false"
+					data-mini="true" data-role="date" name="regdate" id="regdate"
+					placeholder="Registration Date">
+			<input type="tel" data-inline="false"
+					data-mini="true" name="mobileNumber" id="mobileNumber"
+					placeholder="Contact Number">
+			<input type="email" data-inline="false"
+					data-mini="true" name="email" id="email"
+					placeholder="email">
 			<input type="checkbox" name="terms" id="terms"> <label
 				data-mini="true" for="terms" style="font-size: 11px;">I
 				agree to the <a href="#" style="text-decoration: none;">Terms

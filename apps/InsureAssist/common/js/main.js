@@ -13,6 +13,8 @@ var currentPage = {};
 var path = "";
 var regCity = "";
 var regModel = "";
+var mobileNo = 0;
+var emailId = null;
 
 function wlCommonInit(){
 	if (WL.Client.getEnvironment() == WL.Environment.ANDROID) {
@@ -20,15 +22,17 @@ function wlCommonInit(){
 	}
 	
 	$("#pagePort").load(path + "pages/insureAssistLogin.html", function(){
-		$.getScript(path + "js/main.js", function() {
 			if (currentPage.init) {
 				currentPage.init();
-			}
 			WL.Logger.info("inside main.js");
-		});
+		}
 	});
 }
 
+$(window).load(function() {
+    $('.insureAssistButton').css('background-color','#0088b8'); 
+    $('#logIn').css('background-color','#0088b8'); 
+});
 /*
  * 
  * onClick of GetQuote from login page
@@ -42,26 +46,28 @@ function submit(){
 	 * InsureAssistQuickQuote page is loaded and callCityAndManufacturerAPI is invoked
 	 * 
 	 */
-	$("#pagePort").load(path + "pages/InsureAssistQuickQuote.html", function callCityAndManufacturerAPI(){
-		try{
-			WL.Logger.info("adapter is invoked");
-	          var invocationData = {
-	                  adapter : 'InsureAssistHTTPAdapter',
-	                  procedure : 'getAllCitiesInsureAssistHTTPAdapter',
-	                  parameters : []
-	              };
+	$("#pagePort").load(path + "pages/InsureAssistQuickQuote.html");
+	callCityAndManufacturerAPI();
+}
 
-	          WL.Client.invokeProcedure(invocationData,{
-	              onSuccess : getCitiesCallSuccess,
-	              onFailure : getCitiesCallFailure,
-	          });
-		
-		}
-		catch(e){
-		}
-	});
-};
+function callCityAndManufacturerAPI(){
+	try{
+		WL.Logger.info("adapter is invoked");
+          var invocationData = {
+                  adapter : 'InsureAssistHTTPAdapter',
+                  procedure : 'getAllCitiesInsureAssistHTTPAdapter',
+                  parameters : []
+              };
 
+          WL.Client.invokeProcedure(invocationData,{
+              onSuccess : getCitiesCallSuccess,
+              onFailure : getCitiesCallFailure,
+          });
+	
+	}
+	catch(e){
+	}
+}
 /*
  * onSuccess of Cities call
  */
@@ -147,13 +153,13 @@ function getManufacturersAPICallFailure(){
  */
 function callModelsAPI(){
 	try{
-		var model=$('#manufacturer').val();
+		var selManufacturer=$('#manufacturer').val();
 		
 		WL.Logger.info("Models adapter is invoked"+model);
           var invocationData = {
                   adapter : 'InsureAssistHTTPAdapter',
                   procedure : 'getModelsInsureAssistHTTPAdapter',
-                  parameters : [model]
+                  parameters : [selManufacturer]
               };
 
           WL.Client.invokeProcedure(invocationData,{
@@ -203,26 +209,25 @@ function quickQuote(){
 	regManufacturer = $('#manufacturer').val();
 	regModel = $('#model').val();
 	regDate = $('#regdate').val();
+	mobileNo = $('#mobileNumber').val();
+	emailId = $('#email').val();
 	WL.Logger.info("rtoLocationSelector: "+regCity+" manufacturer: "+regManufacturer+" model: "+regModel);
 	$("#pagePort").load(path + "pages/InsureAssistQuoteResult.html");
-	setValues(regCity,regManufacturer,regDate);
-	callAPI(regCity,regManufacturer,regDate,regModel);
+	callAPI();
 }
 	
-function setValues(regCity,regManufacturer,regDate){
-	var label = document.getElementById("quoteResultImageWrapper");
-	WL.Logger.info("regRTOLoc : "+label);
-}
 
 
 
-	function callAPI(regCity,regManufacturer,regDate,regModel){
+	function callAPI(){
 		try{
-		WL.Logger.info("adapter is invoked and regCity "+regCity+" : and : "+regManufacturer);
-		
 		
 		var body = { city: regCity,
-				maufacturer: regManufacturer
+				maufacturer: regManufacturer,
+				model: regModel,
+				date: regDate,
+				mobileNumber: mobileNo,
+				email: emailId
 		};
 	          var invocationData = {
 	                  adapter : 'InsureAssistHTTPAdapter',
@@ -242,8 +247,6 @@ function setValues(regCity,regManufacturer,regDate){
 }
 
 function getAPICallSuccess(result){
-	var regCityLabel=document.getElementById("regRTOLoc");
-	WL.Logger.info("rtoLocationSelector: "+regCity);
 	var responseText=result['responseText'];
 	var responseText = responseText.replace("/*-secure-","");
 	var responseText = responseText.replace("*/","");
@@ -253,10 +256,14 @@ function getAPICallSuccess(result){
 	var array = array[0];
 	var price = array['price'];
 	var idv = array['idv'];
-	var label=document.getElementById("getYearlyPremiumWrapper");
-	label.innerHTML= "Yearly Premium: "+ price;
-	
-	WL.Logger.info("after label"+label.innerHTML);
+	var labelYearlyPremium=document.getElementById("getYearlyPremiumWrapper");
+	var labelRegDate=document.getElementById("regDate");
+	var labelRTOLocation=document.getElementById("regRTOLoc");
+	var labelManufacturer=document.getElementById("regManufacturer");
+	labelYearlyPremium.innerHTML= "Yearly Premium: "+ price;
+	labelManufacturer.innerHTML = "Manufacturer: "+ regManufacturer;
+	labelRTOLocation.innerHTML = "RTO Location: "+ regCity;
+	labelRegDate.innerHTML = "Registration Date: "+regDate;
 }
 
 function getAPICallFailure(){
@@ -283,4 +290,18 @@ function callExpandableList(){
 function onBuyQuote(){
 	pagesHistory.push(path + "pages/InsureAssistExpandableList.html");
 	$("#pagePort").load(path + "pages/InsureAssistAdditionalDetails.html");
+}
+
+function previousPage(){
+	
+	var page=pagesHistory.pop();
+	$("#pagePort").load(page);
+	if(page == path + "pages/InsureAssistQuickQuote.html" ){
+		 WL.Logger.info(regCity);
+		 callCityAndManufacturerAPI();
+	}
+	else if (page == path + "pages/InsureAssistQuoteResult.html" ){
+		WL.Logger.info("inside callAPI"+pagesHistory.length);
+		callAPI();
+	}
 }
