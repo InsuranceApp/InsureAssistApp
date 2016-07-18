@@ -13,48 +13,34 @@
 	<link rel="apple-touch-icon" href="images/apple-touch-icon.png"> 
 -->
 <link href="jqueryMobile/jquery.mobile-1.4.5.min.css" rel="stylesheet">
-<link rel="stylesheet"  href="http://code.jquery.com/mobile/git/jquery.mobile-git.css" />
-<script>window.$ = window.jQuery = WLJQ;</script>
-    		<script src="js/initOptions.js"></script>
-    		<script src="js/main.js"></script>
-    		<script src="js/messages.js"></script>
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 <link rel="stylesheet" href="css/InsureAssist.css">
 </head>
 
 <body>
-	<div id="finalpremium" align="center">
-		
-		
-			<label>Premium Details</label>
-		
-		<div id="premiumidv">
-		
-			<label id="rtoLocation">Insured Declared Value(IDV): $405189</label> 
-			<label id="regDate">Car Premium: $6276</label> 
-			<label id="manufacturer">Service Tax : $941</label>
-		    <label id="regDate">Total Premium: $7218</label>
-		    <a  onclick="" >View break-up</a>
-		     <a  onclick="">Re-Calculate</a>
+		<div id="authenticatorQuoteFormWrapper"  align="center">
+		<div data-role="header" align="center" data-inline="true">
+
+		<img src="images/Back11.png" style="float: left;" class="backButton" alt="backButton" onclick="previousPage()"><img src="images/logo.png" class="quoteResultImage" alt="InsureAssist">
+	</div>
+		<div class="quoteResultWrapper">
+		<label>Premium Details</label>
 		</div>
-		<a  onclick="onFinalPremium"
-				style="background-color: #00B2EF" class="insureAssistButton"
-				data-role="button">Continue</a>
-				
-		</div><script type="text/javascript">
 		
-	function onFinalPremium(){
-	
-	
-	}
-	
-	
-	</script>
+		<div id="premiumidv" >
 		
-		
-		
-		
+			<label id="rtoLocation">Insured Declared Value(IDV): Rs 405189</label> 
+			<label id="regDate">Car Premium: Rs 6276</label> 
+			<label id="manufacturer">Service Tax : Rs 941</label>
+		    <label id="regDate">Total Premium: $Rs 7218</label>
+		</div>
+		<a href="#" style="background-color: #0088b8" class="insureAssistButton" 
+		 	onclick="callRecalculate()" data-role="button">ReCalculate</a>
+		 	
+		<a style="background-color: #0088b8" class="insureAssistButton"
+				data-role="button">Submit</a>
+		</div>	
 		</body>
 		
 		

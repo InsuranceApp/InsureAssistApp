@@ -37,16 +37,16 @@
 		<form method="post" id="quoteDetails">
 			<br /> 
 			<select id="rtoLocationSelector" class="QuickQuoteDropDownSelector">
-				<option selected="selected">Select RTO Location</option>
+				<option>Select RTO Location</option>
 			</select>
 			<div id="rtolocationerror" class="error" style="display: none; color: red;">Please select RTO Location</div>
 			<select id="manufacturer" onchange="callModelsAPI()">
-				<option selected="selected">Manufacturer</option>
+				<option>Manufacturer</option>
 			</select> 
 			<div id="manufacturererror" class="error" style="display: none; color: red;">Please select manufacturer of your vehicle</div>
 			
 			<select id="model">
-				<option selected="selected">Model</option>
+				<option>Model</option>
 			</select> 
 			<div id="modelerror" class="error" style="display: none; color: red;">Please select model of your vehicle</div>
 			
@@ -54,7 +54,7 @@
 			<div id="regdateerror" class="error" style="display: none; color: red;">Please enter Registration Date in MM/DD/YYYY</div>
 			
 			<input type="tel" data-inline="false" data-mini="true" name="mobileNumber" id="mobileNumber" placeholder="Contact Number">
-			<div id="regMobileNumberError" class="error" style="display: none; color: red;">Please enter correct mobile number</div>
+			<div id="regMobileNumberError" class="error" style="display: none; color: red;">Please enter 10 digit mobile number</div>
 			
 			<input type="email" data-inline="false" data-mini="true" name="email" id="email" placeholder="email">
 			<div id="regEmailError" class="error" style="display: none; color: red;">Please enter correct email address</div>
@@ -66,7 +66,7 @@
 				<a href="#" style="text-decoration: none;" onclick="termsandconditions()" id="termslink">Terms
 					and Conditions</a>
 			</label> 
-				<div id="termserror" class="error">Please check the terms and conditions</div>
+				<div id="termserror" class="error" style="display: none; color: red;">Please check the terms and conditions</div>
 				<div id="myModal" class="modal" style="display: none;"> 
 
 			  <!-- Modal content -->

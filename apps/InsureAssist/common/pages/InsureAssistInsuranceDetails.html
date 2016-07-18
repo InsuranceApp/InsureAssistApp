@@ -13,26 +13,30 @@
   			<link rel="apple-touch-icon" href="images/apple-touch-icon.png"> 
   		-->
   		<link href="jqueryMobile/jquery.mobile-1.4.5.min.css" rel="stylesheet">
-  		
 		<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 		<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 		<link rel="stylesheet" href="css/InsureAssist.css"/>
+		 <script>
+		 
+		 </script>
+		
 	</head>
     	<body >
 	    	<div id="page" align="center">
     			<div data-role="header" align="center" data-inline="true">
-
-		<img src="images/Back11.png" style="float: left;" class="backButton" alt="backButton" onclick="previousPage()"><img src="images/logo.png" class="quoteResultImage" alt="InsureAssist">
-	</div>
-    			<label>Current Insurance Details</label>
+						<img src="images/Back11.png" style="float: left;" class="backButton" alt="backButton" onclick="previousPage()">
+						<img src="images/logo.png" class="quoteResultImage" alt="InsureAssist">
+				</div>
+    			<div class="quoteResultWrapper">
+    				<label>Current Insurance Details</label>
+    			</div>
     			<form class="currentInsuranceDetails">
-			
-					<div data-role="controlgroup" id="controlgroup">
-						<input type="radio" name="radioNewCar" id="radioNew1" value="radio">
-						<label for="radioNew1">Buy Insurance For New Car</label>
-						<input type="radio" name="radioNewCar" id="radioNew2" value="radio" onclick="renewPolicy()" >
-						<label for="radioNew2">Renew Existing or lapsed car policy from any insurer</label> 
-					</div>
+			<div data-role="controlgroup" id="controlgroup">
+				<input type="radio" name="radioNewCar" id="radioNew1" value="radio" onclick="callExpandableList()">
+				<label for="radioNew1">Buy Insurance For New Car</label>
+				<input type="radio" name="radioNewCar" id="radioNew2" value="radio" onclick="renewPolicy()" >
+				<label for="radioNew2">Renew Existing or lapsed car policy from any insurer</label> 
+			</div>
 		</form>
 		<div id="currentinsurer">
 		
@@ -41,11 +45,10 @@
 					<div data-role="controlgroup" id="controlgroup2">
 						<input type="radio" name="radio-choice" id="radio1" id="ifYes" onclick="renewPolicyPremium()" >
 						<label for="radio1">Yes</label>
-						<input type="radio" name="radio-choice" id="radio2" id="ifNo">
+						<input type="radio" name="radio-choice" id="radio2" id="ifNo" onclick="callExpandableList()">
 						<label for="radio2">No</label>
 					</div>
 				</form>
-					<a  onclick="callExpandableList()" style="background-color: #0088b8" class="insureAssistButton" data-role="button">Continue</a>
 				</div>
 				<div data-role="footer" data-position="fixed" data-theme="a">
                     <div class="footerimg">
@@ -70,33 +73,7 @@
     			</div>
     			</div>
     		</div>
-    			
-    	
-
-				
-	<script type="text/javascript">
-		
-	function newCar(){
 	
-	 window.location.href="InsureAssistExpandableList.html";
-	 document.getElementById("ifYesOrNo").style.display="none";
-   	 document.getElementById('ifNo').style.display = 'none';
-   	 document.getElementById('ifYes').style.display = 'none';
-	
-	}
-	
-	</script>
-	
-	<script type="text/javascript">
-		
-	function renewPolicy(){
-	
-	 window.location.href="InsureAssistCalcPremiumForRenew.html";
-	 
-	
-	}
-	
-	</script>
 		</body>
 		</html>
     			

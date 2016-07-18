@@ -24,7 +24,9 @@
 
 		<img src="images/Back11.png" style="float: left;" class="backButton" alt="backButton" onclick="previousPage()"><img src="images/logo.png" class="quoteResultImage" alt="InsureAssist">
 	</div>
-		<label>Quick Quote Details</label>
+		<div class="quoteResultWrapper">
+			<label>Quick Quote Details</label>
+		</div>
 		<div id="collapsibleListView">
 			<div data-role="collapsible-set" id="collapsible-set">
 				<div data-role="collapsible" id="collapsible">
@@ -50,7 +52,7 @@
 							<option value="2">Student</option>
 							<option value="3">Businessman</option>
 							<option value="4">Salried Pvt Sector</option>
-							<option value="5">Salried Government Sector</option>
+							<option value="5">Salried Govt Sector</option>
 							<option value="6">SelfEmployed</option>
 							<option value="7">Others</option>
 						</select> 
@@ -72,7 +74,7 @@
 						</select> 
 						<div id="maritalStatuserror" class="error" style="display: none; color: red;">Mandatory Value. Cannot be left empty</div>
 						 <select id="familyMembers">
-							<option value="1">Number Of Family Members Driving the vehicle</option>
+							<option value="1">Family Members Driving the vehicle</option>
 							<option value="2">1</option>
 							<option value="3">2</option>
 							<option value="4">3</option>
@@ -81,10 +83,10 @@
 						</select>
 						<div id="familyMemberserror" class="error" style="display: none; color: red;">Mandatory Value. Cannot be left empty</div>
 						<select id="monthlyMileages">
-							<option value="1">Estimated Monthly Mileage</option>
-							<option value="2">500</option>
-							<option value="3">1000</option>
-							<option value="4">1500</option>
+							<option value="1">Monthly Mileage(in Km)</option>
+							<option value="2">0-500</option>
+							<option value="3">500-1000</option>
+							<option value="4">1000-1500</option>
 						</select>
 						<div id="monthlyMileageserror" class="error" style="display: none; color: red;">Mandatory Value. Cannot be left empty</div>
 					</form>

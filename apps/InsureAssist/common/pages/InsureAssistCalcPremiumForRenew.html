@@ -21,26 +21,29 @@
 <body>
 	<div id="additionalDetails" align="center">
 		<div data-role="header" align="center" data-inline="true">
-
-		<img src="images/Back11.png" style="float: left;" class="backButton" alt="backButton" onclick="previousPage()"><img src="images/logo.png" class="quoteResultImage" alt="InsureAssist">
+			<img src="images/Back11.png" style="float: left;" class="backButton" alt="backButton" onclick="previousPage()">
+			<img src="images/logo.png" class="quoteResultImage" alt="InsureAssist">
 	</div>
 		<div class="quoteResultWrapper"> 
 			<label>Calculate Premium</label>
 		</div>
-		<form class="currentInsuranceDetails" id="calculatePremiumDetails">
+		<form id="calculatePremiumDetails">
 			<input id="policyNumber" type="text" class="insureAssistLoginLabel"
 					placeholder="Policy Number" /> 
+			<div id="policyNumbererror" class="error" style="display: none; color: red;">Please select Policy Number.</div>	
 			<input id="engineChasis" type="text" class="insureAssistLoginLabel"
 					placeholder="Engine/Chasis Number" /> 
+			<div id="engineChasiserror" class="error" style="display: none; color: red;">Please select Engine/Chasis Number.</div>	
 		</form>
 		<form class="currentInsuranceDetails" id="confirmatonDetails">
-			<label>Confirmaton</label> 
 			<select id="Confirmaton">
-				<option value="1">Engine Number</option>
+				<option value="1">Confirmaton</option>
 				<option value="2">Chasis Number</option>
+				<option value="3">Engine Number</option>
 			</select>
+			<div id="Confirmatonerror" class="error" style="display: none; color: red;">Please select a categoryfor confirmation.</div>	
 		</form>
-		<a href="#" class="insureAssistButton" data-role="button" onclick="callAPI()"
+		<a href="#" style="background-color: #0088b8" class="insureAssistButton" data-role="button" onclick="callAdditionalDetails()"
 					id="getQuote">Submit</a>
 		<br/>
 		<div data-role="footer" data-position="fixed" data-theme="a">

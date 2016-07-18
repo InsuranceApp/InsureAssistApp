@@ -16,6 +16,8 @@ var regModel = "";
 var mobileNo = 0;
 var emailId = null;
 var username = null;
+var cubicCapacity = "cubicCapacity";
+var exShowRoomPrice = "exShowRoomPrice";
 
 function wlCommonInit(){
 	if (WL.Client.getEnvironment() == WL.Environment.ANDROID) {
@@ -292,24 +294,14 @@ function checkTotal() {
 function callExpandableList(){
 	pagesHistory.push(path + "pages/InsureAssistInsuranceDetails.html");
 	$("#pagePort").load(path + "pages/InsureAssistExpandableList.html", function getPersonalDetails(){
-		var usernameText = document.getElementById("regusername");
-		var RegisteredDate = document.getElementById("regdatetime");
-		var regManufacturerEx = document.getElementById("regManufacturer");
-		var registeredModel = document.getElementById("registeredModelEx");
-		var cubicCapacity = document.getElementById("cubicCapacity");
-		var exShowroomPrice = document.getElementById("exShowroomPrice");
-		var mobileNum = document.getElementById("mobileNum");
-		var emailAdd = document.getElementById("emailId");
-		usernameText.setAttribute("value", username);
-		RegisteredDate.setAttribute("value", regDate);
-		regManufacturerEx.setAttribute("value", regManufacturer);
-		registeredModel.setAttribute("value", regModel);
-		cubicCapacity.setAttribute("value", "cubicCapacity"); //TODO
-		exShowroomPrice.setAttribute("value", "exShowroomPrice"); //TODO
-		mobileNum.setAttribute("value", mobileNo);
-		emailAdd.setAttribute("value", emailId);
-
-		
+		document.getElementById("regusername").value=username;
+		document.getElementById("regdatetime").setAttribute("value", regDate);
+		document.getElementById("regManufacturer").setAttribute("value", regManufacturer);
+		document.getElementById("registeredModelEx").setAttribute("value", regModel);
+		document.getElementById("cubicCapacity").setAttribute("value", cubicCapacity); //TODO
+		document.getElementById("exShowroomPrice").setAttribute("value", exShowroomPrice); //TODO
+		document.getElementById("mobileNum").setAttribute("value", mobileNo);
+		document.getElementById("emailId").setAttribute("value", emailId);
 	} );
 }
 
@@ -329,18 +321,33 @@ function callInsuranceDetails(){
 function previousPage(){
 	
 	var page=pagesHistory.pop();
-	$("#pagePort").load(page);
-	if(page == path + "pages/InsureAssistQuickQuote.html" ){
-		 WL.Logger.info(regCity);
-		 $("#rtoLocationSelector option[value='regCity']").attr("selected", "selected");
-		 callCityAndManufacturerAPI();
-	}
-	else if (page == path + "pages/InsureAssistQuoteResult.html" ){
-		WL.Logger.info("inside callAPI"+pagesHistory.length);
-		callAPI();
-	}
-	else if (page == path + "pages/InsureAssistExpandableList.html"){
-	}
+	$("#pagePort").load(page, function(){
+		if (currentPage.init) 
+			currentPage.init();
+		if(page == path + "pages/InsureAssistQuickQuote.html" ){
+			WL.Logger.info("value is:::"+document.getElementById("regdate"));
+			document.getElementById("regdate").value=regDate;
+			document.getElementById("mobileNumber").value=mobileNo;
+			document.getElementById("email").value=emailId;
+			callCityAndManufacturerAPI();
+			 
+		}
+		else if (page == path + "pages/InsureAssistQuoteResult.html" ){
+			WL.Logger.info("inside callAPI"+pagesHistory.length);
+			callAPI();
+		}
+		else if (page == path + "pages/InsureAssistExpandableList.html"){
+			document.getElementById("regusername").value=username;
+			document.getElementById("regdatetime").setAttribute("value", regDate);
+			document.getElementById("regManufacturer").setAttribute("value", regManufacturer);
+			document.getElementById("registeredModelEx").setAttribute("value", regModel);
+			document.getElementById("cubicCapacity").setAttribute("value", cubicCapacity); //TODO
+			document.getElementById("exShowroomPrice").setAttribute("value", exShowroomPrice); //TODO
+			document.getElementById("mobileNum").setAttribute("value", mobileNo);
+			document.getElementById("emailId").setAttribute("value", emailId);
+		}
+	});
+	
 	
 }
 
@@ -364,15 +371,8 @@ function quickQuoteerrorcheck()
 		    document.getElementById("manufacturererror").style.display="none";
 		    document.getElementById("modelerror").style.display="none";
 		    document.getElementById("termserror").style.display="none";
-		    return false;
-	}
-	else if (dateerrorcheck == false || regdate == ""){
-		    document.getElementById("regdateerror").style.display="block";
-		    document.getElementById("regdate").style.borderColor = "red !important";
-		    document.getElementById("rtoLocationSelector").style.display="none";
-		    document.getElementById("manufacturererror").style.display="none";
-		    document.getElementById("modelerror").style.display="none";
-		    document.getElementById("termserror").style.display="none";
+		    document.getElementById("regEmailError").style.display="none";
+		    document.getElementById("regMobileNumberError").style.display="none";
 		    return false;
 	}
 	else if(document.getElementById("manufacturer").value == "Manufacturer") {
@@ -382,6 +382,8 @@ function quickQuoteerrorcheck()
 		    document.getElementById("regdateerror").style.display="none";
 		    document.getElementById("modelerror").style.display="none";
 		    document.getElementById("termserror").style.display="none";
+		    document.getElementById("regEmailError").style.display="none";
+		    document.getElementById("regMobileNumberError").style.display="none";
 		    return false;
 	}
 	 else if(document.getElementById("model").value == "Model") {
@@ -391,6 +393,39 @@ function quickQuoteerrorcheck()
 		    document.getElementById("regdateerror").style.display="none";
 		    document.getElementById("manufacturererror").style.display="none";
 		    document.getElementById("termserror").style.display="none";
+		    document.getElementById("regEmailError").style.display="none";
+		    document.getElementById("regMobileNumberError").style.display="none";
+		    return false;
+	}
+	 else if (dateerrorcheck == false || regdate == ""){
+		    document.getElementById("regdateerror").style.display="block";
+		    document.getElementById("regdate").style.borderColor = "red";
+		    document.getElementById("rtoLocationSelector").style.display="none";
+		    document.getElementById("manufacturererror").style.display="none";
+		    document.getElementById("modelerror").style.display="none";
+		    document.getElementById("termserror").style.display="none";
+		    document.getElementById("regEmailError").style.display="none";
+		    document.getElementById("regMobileNumberError").style.display="none";
+		    return false;
+	}
+	 else  if(document.getElementById("mobileNumber").value == "" || (document.getElementById("mobileNumber").value).length != 10)  {
+		 	document.getElementById("regMobileNumberError").style.display="block";
+		    document.getElementById("mobileNumber").style.borderColor = "red";
+		    document.getElementById("rtoLocationSelector").style.display="none";
+		    document.getElementById("regdateerror").style.display="none";
+		    document.getElementById("manufacturererror").style.display="none";
+		    document.getElementById("modelerror").style.display="none";
+		    document.getElementById("regEmailError").style.display="none";
+		    return false;
+	}
+	 else  if(document.getElementById("email").value == "" || (!(document.getElementById("email").value).contains("@")))  {
+		    document.getElementById("regEmailError").style.display="block";
+		    document.getElementById("email").style.borderColor = "red";
+		    document.getElementById("rtoLocationSelector").style.display="none";
+		    document.getElementById("regdateerror").style.display="none";
+		    document.getElementById("manufacturererror").style.display="none";
+		    document.getElementById("modelerror").style.display="none";
+		    document.getElementById("regMobileNumberError").style.display="none";
 		    return false;
 	}
 	 else  if(document.getElementById("terms").checked == false)  {
@@ -400,6 +435,8 @@ function quickQuoteerrorcheck()
 		    document.getElementById("regdateerror").style.display="none";
 		    document.getElementById("manufacturererror").style.display="none";
 		    document.getElementById("modelerror").style.display="none";
+		    document.getElementById("regEmailError").style.display="none";
+		    document.getElementById("regMobileNumberError").style.display="none";
 		    return false;
 	}
 	 else  {
@@ -408,6 +445,8 @@ function quickQuoteerrorcheck()
 		    document.getElementById("manufacturererror").style.display="none";
 		    document.getElementById("modelerror").style.display="none";
 		    document.getElementById("termserror").style.display="none";
+		    document.getElementById("regEmailError").style.display="none";
+		    document.getElementById("regMobileNumberError").style.display="none";
 		    return true;
 		 }
 }
@@ -447,7 +486,6 @@ if (mm==1 || mm>2)
 {  
 if (dd>ListofDays[mm-1])  
 {  
-alert('Invalid date format!');  
 return false;  
 }  
 }  
@@ -460,19 +498,16 @@ lyear = true;
 }  
 if ((lyear==false) && (dd>=29))  
 {  
-alert('Invalid date format!');  
 return false;  
 }  
 if ((lyear==true) && (dd>29))  
 {  
-alert('Invalid date format!');  
 return false;  
 }  
 }  
 }  
 else  
 {  
-alert("Invalid date format!");  
    
 return false;  
 }  
@@ -490,13 +525,13 @@ function renewPolicy(){
 
 function renewPolicyPremium(){
 	pagesHistory.push(path + "pages/InsureAssistInsuranceDetails.html");
-	$("#pagePort").load(path + "pages/InsureAssistExpandableList.html");
+	$("#pagePort").load(path + "pages/InsureAssistCalcPremiumForRenew.html");
 }
+
 
 function BuyQuoteerrorcheck(){
 	if(document.getElementById("occupation").value == "1")
 	{
-		WL.Logger.info("inside error1");
 	    $('#occupationerror').show();
 	    WL.Logger.info("inside error");
 	    document.getElementById("occupation").style.borderColor = "red !important";
@@ -558,4 +593,49 @@ function onAdditionalCoverages(){
 	pagesHistory.push(path + "pages/InsureAssistAdditionalDetails.html");
 	$("#pagePort").load(path + "pages/FinalPremium.html");
 	
+}
+
+function callRecalculate(){
+	pagesHistory.push(path + "pages/FinalPremium.html");
+	$("#pagePort").load(path + "pages/InsureAssistQuickQuote.html");
+}
+
+function callAdditionalDetails(){
+	result = AdditionalDetailsErrorcheck();
+	if(result == true)
+	{
+	pagesHistory.push(path + "pages/InsureAssistCalcPremiumForRenew.html");
+	$("#pagePort").load(path + "pages/InsureAssistAdditionalDetails.html");
+	}
+}
+
+function AdditionalDetailsErrorcheck(){
+	if(document.getElementById("policyNumber").value == "")
+	{
+	    $('#policyNumbererror').show();
+	    document.getElementById("policyNumber").style.borderColor = "red !important";
+	    document.getElementById("engineChasiserror").style.display="none";
+	    document.getElementById("engineChasis").style.borderColor = "none";
+	    document.getElementById("Confirmatonerror").style.display="none";
+	    document.getElementById("Confirmaton").style.borderColor = "none";
+	    return false;
+	}
+	else if(document.getElementById("engineChasis").value == ""){
+	 $('#engineChasiserror').show();
+	 document.getElementById("engineChasis").style.borderColor = "red !important";
+	    document.getElementById("policyNumbererror").style.display="none";
+	    document.getElementById("policyNumber").style.borderColor = "none";
+	    document.getElementById("Confirmatonerror").style.display="none";
+	    document.getElementById("Confirmaton").style.borderColor = "none";
+	    return false;
+}
+	else if(document.getElementById("Confirmaton").value == "1"){
+		$('#Confirmatonerror').show();
+		 document.getElementById("Confirmaton").style.borderColor = "red !important";
+		document.getElementById("policyNumbererror").style.display="none";
+	    document.getElementById("policyNumber").style.borderColor = "none";
+	    document.getElementById("engineChasiserror").style.display="none";
+	    document.getElementById("engineChasis").style.borderColor = "none";
+	}
+	else return true;
 }
