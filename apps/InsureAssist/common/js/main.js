@@ -18,6 +18,14 @@ var emailId = null;
 var username = null;
 var cubicCapacity = "cubicCapacity";
 var exShowRoomPrice = "exShowRoomPrice";
+var cityList = [];
+var manufacturerList =[];
+var price = 0;
+var idv = 0;
+var calcAddOn = 0;
+var serviceTax = 0;
+var basePremium = 0;
+
 
 function wlCommonInit(){
 	if (WL.Client.getEnvironment() == WL.Environment.ANDROID) {
@@ -81,18 +89,22 @@ function getCitiesCallSuccess(result){
 	var responseText = responseText.replace("/*-secure-","");
 	var responseText = responseText.replace("*/","");
 	var responseText = JSON.parse(responseText);
-	var array = responseText['array'];
-	WL.Logger.info("success response for array"+array.length);
+	cityList = responseText['array'];
+	WL.Logger.info("success response for array"+cityList.length);
+	populateCitiesList(cityList);
+    //after successful cities call manufacturer API will be invoked
+	 callManufactureAPI();
+}
+
+function populateCitiesList(cityList){
 	var options="";
-	 for(var i=0; i< array.length; i++){
-		 var arrayPos = array[i];
+	 for(var i=0; i< cityList.length; i++){
+		 var arrayPos = cityList[i];
 		 options = $('<option/>').html(arrayPos.city_name);
-         $("#rtoLocationSelector").append(options);
-         WL.Logger.info("array[i]"+arrayPos.city_name);
-     }
-     
-     //after successfull cities call manufacturer API will be invoked
-     callManufactureAPI();
+        $("#rtoLocationSelector").append(options);
+        WL.Logger.info("array[i]"+arrayPos.city_name);
+    }
+	
 }
 
 /*
@@ -135,16 +147,20 @@ function getManufacturersAPICallSuccess(result){
 	var responseText = responseText.replace("/*-secure-","");
 	var responseText = responseText.replace("*/","");
 	var responseText = JSON.parse(responseText);
-	var array = responseText['array'];
-	WL.Logger.info("success response for array"+array.length);
+	manufacturerList = responseText['array'];
+	WL.Logger.info("success response for array"+manufacturerList.length);
+	populateManufacturerList(manufacturerList);
+	 
+}
+
+function populateManufacturerList(manufacturerList){
 	var options = "";
-	 for(var i=0; i< array.length; i++){
-		 var arrayPos = array[i];
+	 for(var i=0; i< manufacturerList.length; i++){
+		 var arrayPos = manufacturerList[i];
 		 options = $('<option/>').html(arrayPos.manufacturer_name);
 		 $("#manufacturer").append(options);
-         WL.Logger.info("array[i]"+arrayPos.manufacturer_name);
-     }
-	 
+        WL.Logger.info("manufacturerList[i]"+arrayPos.manufacturer_name);
+    }
 }
 /*
  * onFailure of Manufacturer API call
@@ -260,15 +276,18 @@ function getAPICallSuccess(result){
 	var responseText = responseText.replace("*/","");
 	WL.Logger.info("success"+responseText);
 	var responseText = JSON.parse(responseText);
-	var array = responseText['array'];
-	var array = array[0];
-	var price = array['price'];
-	var idv = array['idv'];
+	basePremium = parseInt(responseText['Premium']);
+	idv = responseText['IDV'].replace(",","");
+	WL.Logger.info("response text is::"+responseText['IDV']);
+	idv = parseInt(idv);
+	serviceTax = parseInt(responseText['Tax']);
 	var labelYearlyPremium=document.getElementById("getYearlyPremiumWrapper");
+	var labelIDV=document.getElementById("getIDVWrapper");
 	var labelRegDate=document.getElementById("regDate");
 	var labelRTOLocation=document.getElementById("regRTOLoc");
 	var labelManufacturer=document.getElementById("regManufacturer");
-	labelYearlyPremium.innerHTML= "Yearly Premium: "+ price;
+	labelIDV.innerHTML= "IDV: Rs"+ idv;
+	labelYearlyPremium.innerHTML= "Yearly Premium: Rs"+ basePremium;
 	labelManufacturer.innerHTML = "Manufacturer: "+ regManufacturer;
 	labelRTOLocation.innerHTML = "RTO Location: "+ regCity;
 	labelRegDate.innerHTML = "Registration Date: "+regDate;
@@ -280,15 +299,17 @@ function getAPICallFailure(){
 
 function checkTotal() {
 	 WL.Logger.info("inside checkTotal");
-    var sum = 0;
+	 calcAddOn = 0;
     for (i=0;i<document.addOnCoverPage.addOnCoverProduct.length;i++) {
 		  if (document.addOnCoverPage.addOnCoverProduct[i].checked) {
-		  	sum = sum + parseInt(document.addOnCoverPage.addOnCoverProduct[i].value);
+			  calcAddOn = calcAddOn + parseInt(document.addOnCoverPage.addOnCoverProduct[i].value);
+		  	document.addOnCoverPage.addOnCoverProduct[i].Text;
+		  	 WL.Logger.info("total is1111");
 		  }
 		}
     var label=document.getElementById("getAddOnPremiumWrapper");
-	label.innerHTML= "TotalAddOnCoverage: "+ sum;
-    WL.Logger.info("total is"+sum);
+	label.innerHTML= "Additional Coverage Value: Rs "+ calcAddOn;
+    WL.Logger.info("total is"+calcAddOn);
 }
 
 function callExpandableList(){
@@ -325,16 +346,27 @@ function previousPage(){
 		if (currentPage.init) 
 			currentPage.init();
 		if(page == path + "pages/InsureAssistQuickQuote.html" ){
-			WL.Logger.info("value is:::"+document.getElementById("regdate"));
+			WL.Logger.info("value is:::"+cityList);
 			document.getElementById("regdate").value=regDate;
 			document.getElementById("mobileNumber").value=mobileNo;
 			document.getElementById("email").value=emailId;
-			callCityAndManufacturerAPI();
+			populateCitiesList(cityList);
+			populateManufacturerList(manufacturerList);
+			callModelsAPI();
 			 
 		}
 		else if (page == path + "pages/InsureAssistQuoteResult.html" ){
 			WL.Logger.info("inside callAPI"+pagesHistory.length);
-			callAPI();
+			var labelYearlyPremium=document.getElementById("getYearlyPremiumWrapper");
+			var labelIDV=document.getElementById("getIDVWrapper");
+			var labelRegDate=document.getElementById("regDate");
+			var labelRTOLocation=document.getElementById("regRTOLoc");
+			var labelManufacturer=document.getElementById("regManufacturer");
+			labelIDV.innerHTML= "IDV: Rs"+ idv;
+			labelYearlyPremium.innerHTML= "Yearly Premium: Rs"+ basePremium;
+			labelManufacturer.innerHTML = "Manufacturer: "+ regManufacturer;
+			labelRTOLocation.innerHTML = "RTO Location: "+ regCity;
+			labelRegDate.innerHTML = "Registration Date: "+regDate;
 		}
 		else if (page == path + "pages/InsureAssistExpandableList.html"){
 			document.getElementById("regusername").value=username;
@@ -345,6 +377,8 @@ function previousPage(){
 			document.getElementById("exShowroomPrice").setAttribute("value", exShowroomPrice); //TODO
 			document.getElementById("mobileNum").setAttribute("value", mobileNo);
 			document.getElementById("emailId").setAttribute("value", emailId);
+		}
+		else if (page == path + "pages/InsureAssistQuickQuote.html"){
 		}
 	});
 	
@@ -591,13 +625,26 @@ else
 
 function onAdditionalCoverages(){
 	pagesHistory.push(path + "pages/InsureAssistAdditionalDetails.html");
-	$("#pagePort").load(path + "pages/FinalPremium.html");
+	$("#pagePort").load(path + "pages/FinalPremium.html", function(){
+		var labelIDV = document.getElementById("selectedIDV");
+		var labelPremium = document.getElementById("selectedPremium");
+		var labelAddOns = document.getElementById("selectedAddOns");
+		var labelServiceTax = document.getElementById("selectedServiceTax");
+		var totalCalculatedPremium = document.getElementById("totalPremiumValue");
+		labelIDV.innerHTML = "IDV value is: Rs "+idv;
+		labelPremium.innerHTML = "Base Premium is: Rs "+ basePremium;
+		labelAddOns.innerHTML = "Addition Coverages: Rs "+calcAddOn;
+		labelServiceTax.innerHTML = "Service tax: Rs "+serviceTax;
+		var totalPremium = 0;
+		totalPremium = idv + basePremium + calcAddOn + serviceTax;
+		totalCalculatedPremium.innerHTML = "Total Premium is: Rs "+ totalPremium;
+	});
 	
 }
 
 function callRecalculate(){
 	pagesHistory.push(path + "pages/FinalPremium.html");
-	$("#pagePort").load(path + "pages/InsureAssistQuickQuote.html");
+	$("#pagePort").load(path + "pages/InsureAssistAdditionalDetails.html");
 }
 
 function callAdditionalDetails(){

@@ -56,7 +56,6 @@
 							<option value="6">SelfEmployed</option>
 							<option value="7">Others</option>
 						</select> 
-						<div id="occupationerror" class="error" style="display: none; color: red;">Mandatory Value. Cannot be left empty</div>
 						<select id="familySize">
 							<option value="FamilySize">Family Size</option>
 							<option value="2">1</option>
@@ -65,14 +64,13 @@
 							<option value="5">4</option>
 							<option value="6">5</option>
 						</select>
-						<div id="familySizeerror" class="error" style="display: none; color: red;">Mandatory Value. Cannot be left empty</div> 
+						 
 						<select id="maritalStatus">
 							<option value="1">Marital Status</option>
 							<option value="2">Unmarried</option>
 							<option value="3">Divorced</option>
 							<option value="4">Married</option>
 						</select> 
-						<div id="maritalStatuserror" class="error" style="display: none; color: red;">Mandatory Value. Cannot be left empty</div>
 						 <select id="familyMembers">
 							<option value="1">Family Members Driving the vehicle</option>
 							<option value="2">1</option>
@@ -81,14 +79,12 @@
 							<option value="5">4</option>
 							<option value="6">5</option>
 						</select>
-						<div id="familyMemberserror" class="error" style="display: none; color: red;">Mandatory Value. Cannot be left empty</div>
 						<select id="monthlyMileages">
 							<option value="1">Monthly Mileage(in Km)</option>
 							<option value="2">0-500</option>
 							<option value="3">500-1000</option>
 							<option value="4">1000-1500</option>
 						</select>
-						<div id="monthlyMileageserror" class="error" style="display: none; color: red;">Mandatory Value. Cannot be left empty</div>
 					</form>
 				</div>
 				<div data-role="collapsible" id="collapsible1">
@@ -116,6 +112,11 @@
 					</form>
 				</div>
 			</div>
+			<div id="occupationerror" class="error" style="display: none; color: red;">Select your Occupation</div>
+			<div id="familySizeerror" class="error" style="display: none; color: red;">Select your Family Size</div>
+			<div id="maritalStatuserror" class="error" style="display: none; color: red;">Select marital status</div>
+			<div id="familyMemberserror" class="error" style="display: none; color: red;">select family members driving the vehicle</div>
+			<div id="monthlyMileageserror" class="error" style="display: none; color: red;">select monthly milegae</div>
 			<a href="#"
 				style="background-color: #0088b8" class="insureAssistButton"
 				onclick="onBuyQuote()" data-role="button">Buy Quote</a>
