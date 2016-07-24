@@ -28,6 +28,7 @@
 	<procedure name="getAllCitiesInsureAssistHTTPAdapter"> </procedure>
 	<procedure name="getAllManufacturersInsureAssistHTTPAdapter"> </procedure>
 	<procedure name="getModelsInsureAssistHTTPAdapter"> </procedure>
+	<procedure name="getCoveragesInsureAssistHTTPAdapter"> </procedure>
 	
 	
 

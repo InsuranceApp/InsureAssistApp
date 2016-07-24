@@ -89,3 +89,13 @@ function getModelsInsureAssistHTTPAdapter(model) {
 }
 
 
+function getCoveragesInsureAssistHTTPAdapter() {
+	var input = {
+	    method : 'get',
+	    returnedContentType : 'json',
+	    path : 'api/getAllCoverages'
+	};
+	
+	
+	return WL.Server.invokeHttp(input);
+}

@@ -16,8 +16,8 @@ var regModel = "";
 var mobileNo = 0;
 var emailId = null;
 var username = null;
-var cubicCapacity = "cubicCapacity";
-var exShowRoomPrice = "exShowRoomPrice";
+var cubicCapacity = "";
+var exShowRoomPrice = 0;
 var cityList = [];
 var manufacturerList =[];
 var price = 0;
@@ -33,6 +33,7 @@ function wlCommonInit(){
 	}
 	
 	$("#pagePort").load(path + "pages/insureAssistLogin.html", function(){
+		//callAdditionalCoveragesAPI();
 			if (currentPage.init) {
 				currentPage.init();
 			WL.Logger.info("inside main.js");
@@ -274,11 +275,13 @@ function getAPICallSuccess(result){
 	var responseText=result['responseText'];
 	var responseText = responseText.replace("/*-secure-","");
 	var responseText = responseText.replace("*/","");
-	WL.Logger.info("success"+responseText);
+	WL.Logger.info("success manufacturer"+responseText);
 	var responseText = JSON.parse(responseText);
 	basePremium = parseInt(responseText['Premium']);
 	idv = responseText['IDV'].replace(",","");
 	WL.Logger.info("response text is::"+responseText['IDV']);
+	cubicCapacity = "";
+	exShowroomPrice = 0;
 	idv = parseInt(idv);
 	serviceTax = parseInt(responseText['Tax']);
 	var labelYearlyPremium=document.getElementById("getYearlyPremiumWrapper");
@@ -331,7 +334,94 @@ function onBuyQuote(){
 	if(result == true){
 		pagesHistory.push(path + "pages/InsureAssistExpandableList.html");
 		$("#pagePort").load(path + "pages/InsureAssistAdditionalDetails.html");
+		callAdditionalCoveragesAPI();
 	}
+}
+
+function callAdditionalCoveragesAPI(){
+try{
+	          var invocationData = {
+	                  adapter : 'InsureAssistHTTPAdapter',
+	                  procedure : 'getCoveragesInsureAssistHTTPAdapter',
+	                  parameters : []
+	              };
+	          WL.Client.invokeProcedure(invocationData,{
+	              onSuccess : getAdditionalCoveragesAPICallSuccess,
+	              onFailure : getAdditionalCoveragesAPICallFailure
+	          });
+		}
+		catch(e){
+			console.log(e.message);
+		}
+}
+
+function getAdditionalCoveragesAPICallSuccess(result){
+	WL.Logger.info("AdditionalCoveragesAPI is invoked successfully");
+	var responseText=result['responseText'];
+	var responseText = responseText.replace("/*-secure-","");
+	var responseText = responseText.replace("*/","");
+	var responseText = JSON.parse(responseText);
+	var coveragesListObject = responseText['array'];
+	var coverageObj="";
+	var covName="";
+	var accessoriesCovVal =0;
+	for(var i=0;i<coveragesListObject.length;i++){
+		coverageObj=coveragesListObject[i];
+		WL.Logger.info("coverageObj response for array"+coverageObj);
+		covName=coverageObj['coverage_name'];
+		var covValue =0;
+		covValue=coverageObj['coverage_value'];
+		var accessoriesCov = "";
+		accessoriesCov = document.getElementById("Additional Protection For Accessories").getAttribute("id").toString();
+		
+		var zeroDepCov = document.getElementById("Zero Depreciation Cover").getAttribute("id").toString();
+		var engineCov = document.getElementById("Engine Protect Plus Cover").getAttribute("id").toString();
+		var accidentCov = document.getElementById("Personal Accident Cover for Passengers").getAttribute("id").toString();
+		var garageCov = document.getElementById("Garage Cash cover").getAttribute("id").toString();
+		var hospitalizationCov = document.getElementById("Accidental Hospitalization Cover").getAttribute("id").toString();
+		var consumableCov = document.getElementById("Consumable Cover").getAttribute("id").toString();
+		WL.Logger.info(" covValue "+covValue);
+		WL.Logger.info(" covName "+covName +" accessoriesCov is :"+accessoriesCov );
+		if (covName == accessoriesCov){
+			
+			document.getElementById("Additional Protection For Accessories").value=covValue;
+			accessoriesCovVal=document.getElementById("Additional Protection For Accessories").value;
+			
+			WL.Logger.info("accessoriesCovVal::: "+accessoriesCovVal);
+		}
+		else if (covName == zeroDepCov){
+			document.getElementById("Zero Depreciation Cover").value=covValue;
+		}
+		else if (covName == engineCov){
+			document.getElementById("Engine Protect Plus Cover").value=covValue;
+		}
+		else if (covName == accidentCov){
+			document.getElementById("Personal Accident Cover for Passengers").value=covValue;
+		}
+		else if (covName == garageCov){
+			document.getElementById("Garage Cash cover").value=covValue;
+		}
+		else if (covName == hospitalizationCov){
+			document.getElementById("Accidental Hospitalization Cover").value=covValue;
+		}
+		else if (covName == consumableCov){
+			document.getElementById("Consumable Cover").value=covValue;
+		}
+		WL.Logger.info("coverageObj response for array accessoriesCov "+covName+" covValue "+accessoriesCovVal);
+		depreciationCoverCov = document.getElementById("depreciationCover");
+		engineCoverCov = document.getElementById("engineCover");
+		accidentCoverCov = document.getElementById("accidentCover");
+		garageCoverCov = document.getElementById("garageCover");
+		hospitalizationCoverCov = document.getElementById("hospitalizationCover");
+		consumableCoverCov = document.getElementById("consumableCover");
+	//	WL.Logger.info("coverageObj response for array"+covName+" covValue: "+covValue);
+		//WL.Logger.info("coverageObj response for array"+covName+" covValue: "+covValue);
+	}
+	//WL.Logger.info("success response for array"+coveragesList);
+}
+
+function getAdditionalCoveragesAPICallFailure(){
+	WL.Logger.info("failed to invoke AdditionalCoveragesAPI");
 }
 
 function callInsuranceDetails(){
@@ -636,7 +726,7 @@ function onAdditionalCoverages(){
 		labelAddOns.innerHTML = "Addition Coverages: Rs "+calcAddOn;
 		labelServiceTax.innerHTML = "Service tax: Rs "+serviceTax;
 		var totalPremium = 0;
-		totalPremium = idv + basePremium + calcAddOn + serviceTax;
+		totalPremium = basePremium + calcAddOn + serviceTax;
 		totalCalculatedPremium.innerHTML = "Total Premium is: Rs "+ totalPremium;
 	});
 	
@@ -660,7 +750,7 @@ function AdditionalDetailsErrorcheck(){
 	if(document.getElementById("policyNumber").value == "")
 	{
 	    $('#policyNumbererror').show();
-	    document.getElementById("policyNumber").style.borderColor = "red !important";
+	    document.getElementById("policyNumber").style.borderColor = "red";
 	    document.getElementById("engineChasiserror").style.display="none";
 	    document.getElementById("engineChasis").style.borderColor = "none";
 	    document.getElementById("Confirmatonerror").style.display="none";
@@ -669,7 +759,7 @@ function AdditionalDetailsErrorcheck(){
 	}
 	else if(document.getElementById("engineChasis").value == ""){
 	 $('#engineChasiserror').show();
-	 document.getElementById("engineChasis").style.borderColor = "red !important";
+	 document.getElementById("engineChasis").style.borderColor = "red";
 	    document.getElementById("policyNumbererror").style.display="none";
 	    document.getElementById("policyNumber").style.borderColor = "none";
 	    document.getElementById("Confirmatonerror").style.display="none";
@@ -678,11 +768,17 @@ function AdditionalDetailsErrorcheck(){
 }
 	else if(document.getElementById("Confirmaton").value == "1"){
 		$('#Confirmatonerror').show();
-		 document.getElementById("Confirmaton").style.borderColor = "red !important";
+		 document.getElementById("Confirmaton").style.borderColor = "red";
 		document.getElementById("policyNumbererror").style.display="none";
 	    document.getElementById("policyNumber").style.borderColor = "none";
 	    document.getElementById("engineChasiserror").style.display="none";
 	    document.getElementById("engineChasis").style.borderColor = "none";
 	}
 	else return true;
+}
+
+function submitDetails(){
+	WL.Logger.info("show");
+	$('#submitDetailsConfirmation').show();
+	
 }
